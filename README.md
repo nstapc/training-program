@@ -98,23 +98,3 @@ npm run build
 ```
 
 2. Deploy the contents of the `dist/` directory to your hosting provider.
-
-## Learning Resources
-
-- [React Documentation](https://react.dev/learn)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [ESLint Documentation](https://eslint.org/docs/latest/)
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## License
-
-This project is open source and available under the MIT License.
