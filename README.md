@@ -1,100 +1,121 @@
-# Training Program - React + Vite
+# Training Program - Workout Tracker
 
-This is a comprehensive training program built with React and Vite, designed to help developers learn modern web development techniques.
+A comprehensive workout tracking application built with React, Tailwind CSS, and modern JavaScript best practices.
+
+![Workout Tracker Landing Page](landing.png)
 
 ## Features
 
-- **React 18+** with modern hooks and components
-- **Vite** for fast development and building
-- **Tailwind CSS** for utility-first styling
-- **ESLint** for code quality and consistency
-- **PostCSS** for advanced CSS processing
-- **Responsive Design** ready
+- **Multiple Workout Programs**: Choose from 6 different workout programs (Alpha, Beta, Gamma, Delta, Epsilon, Zeta)
+- **Superset Support**: Intelligent handling of superset exercises with automatic navigation
+- **Progress Tracking**: Visual progress indicators for completed sets and exercises
+- **Timer Functionality**: Built-in rest timer with overtime tracking
+- **Responsive Design**: Works on mobile and desktop devices
+- **Accessible UI**: Full keyboard navigation and ARIA support
+## Installation
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or later recommended)
-- npm or yarn
-- Git
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/nstapc/training-program.git
-cd training-program
-```
-
-2. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
-3. Start the development server:
+## Running the Application
+
+### Development Mode
 ```bash
 npm run dev
-# or
-yarn dev
 ```
+This will start the Vite development server at `http://localhost:5173`
 
-The application will be available at `http://localhost:5173`
-
-## Project Structure
-
-```
-training-program/
-├── public/                  # Static assets
-├── src/
-│   ├── assets/              # Images and static files
-│   ├── App.jsx              # Main application component
-│   ├── main.jsx             # Entry point
-│   ├── index.css            # Global styles
-│   └── App.css              # Component-specific styles
-├── .gitignore               # Git ignore rules
-├── eslint.config.js         # ESLint configuration
-├── package.json             # Project dependencies and scripts
-├── postcss.config.js        # PostCSS configuration
-├── tailwind.config.js       # Tailwind CSS configuration
-├── vite.config.js           # Vite configuration
-└── README.md                # Project documentation
-```
-
-## Available Scripts
-
-- `npm run dev` - Start development server with hot reloading
-- `npm run build` - Create production build
-- `npm run lint` - Run ESLint to check code quality
-- `npm run preview` - Preview production build locally
-
-## Development
-
-### Adding New Components
-
-1. Create a new component file in the `src/` directory (e.g., `src/components/Button.jsx`)
-2. Import and use it in your main application
-
-### Styling
-
-This project uses Tailwind CSS for styling. You can:
-- Use utility classes directly in your JSX
-- Add custom styles in the component CSS files
-- Configure Tailwind in `tailwind.config.js`
-
-### Code Quality
-
-ESLint is configured to enforce code quality standards. Run `npm run lint` to check your code before committing.
-
-## Deployment
-
-To deploy this application:
-
-1. Build for production:
+### Production Build
 ```bash
 npm run build
+npm run preview
 ```
 
-2. Deploy the contents of the `dist/` directory to your hosting provider.
+## Testing
+
+Run the comprehensive test suite:
+```bash
+npm test
+```
+
+Tests include:
+- Data structure validation
+- Superset logic verification
+- Component rendering and interaction
+- Workout progression algorithms
+
+## Code Quality Features
+
+### Architecture
+- **Separation of Concerns**: Clear division between data, utilities, components, and main application
+- **Utility Functions**: Complex logic extracted to reusable, testable utility functions
+- **Component-Based**: Modular React components with well-defined interfaces
+
+### Testing
+- **Comprehensive Coverage**: Tests for data validation, business logic, and UI components
+- **Jest Testing Framework**: Industry-standard testing with React Testing Library
+- **Mock Data**: Realistic test scenarios with complete workout data
+
+### Code Organization
+- **Clean State Management**: Logical state organization with proper React hooks usage
+- **Error Handling**: Data validation with meaningful error messages
+- **Documentation**: JSDoc comments for all utility functions
+
+### Performance
+- **Memoization**: Efficient state updates and rendering
+- **Code Splitting**: Logical separation of concerns for better maintainability
+- **Optimized Re-renders**: Minimal unnecessary component updates
+
+## Usage
+
+1. **Select a Workout**: Choose from the available workout programs on the main screen
+2. **Follow the Program**: The app will guide you through each exercise and set
+3. **Track Progress**: Completed sets are marked automatically
+4. **Rest Timer**: Automatic rest periods between sets with visual countdown
+5. **Navigation**: Skip between exercises and sets as needed
+
+## Workout Data Structure
+
+Each workout follows this structure:
+```javascript
+{
+  name: 'Workout Name',
+  color: 'theme-color', // blue, orange, green, purple, red, indigo
+  description: 'Workout focus description',
+  exercises: [
+    {
+      name: 'Exercise Name',
+      sets: 3-4, // Number of sets
+      reps: 'rep-range', // e.g., '8-10'
+      rest: 30-180, // Rest time in seconds
+      group: 'A1' // Exercise group (superset support)
+    }
+  ]
+}
+```
+
+## Technical Stack
+
+- **Frontend**: React 19 with JSX
+- **Styling**: Tailwind CSS with responsive design
+- **Icons**: Lucide React icon library
+- **Testing**: Jest with React Testing Library
+- **Linting**: ESLint with React-specific rules
+- **Bundler**: Vite for fast development and production builds
+
+## Development Guidelines
+
+1. **Component Testing**: Add tests for any new components
+2. **Utility Functions**: Place reusable logic in `src/utils/`
+3. **Data Validation**: Use the provided validation utilities
+4. **Accessibility**: Maintain ARIA attributes and keyboard navigation
+5. **Documentation**: Add JSDoc comments for new functions
+
+## Contributing
+
+Contributions are welcome! Please follow the existing code patterns and maintain test coverage for any new features.
+
+## License
+
+MIT License
