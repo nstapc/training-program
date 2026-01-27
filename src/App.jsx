@@ -242,8 +242,10 @@ const WorkoutTracker = () => {
         <div className="max-w-4xl w-full">
           <div className="text-center mb-12">
             <Dumbbell size={64} className="mx-auto mb-4 text-gray-400" />
-            <h1 className="text-5xl font-bold mb-3">Workouts</h1>
-            <p className="text-xl text-gray-400">Select your workout</p>
+            <br></br>
+            <h1 className="text-5xl font-bold mb-3">Select a workout</h1>
+            <br></br>
+            {/* <p className="text-xl text-gray-400">Select a workout</p> */}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
