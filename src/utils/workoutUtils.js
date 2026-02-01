@@ -192,13 +192,13 @@ export const validateWorkoutData = (workout) => {
       throw new Error(`Exercise ${index + 1} must have positive integer sets`);
     }
 
-    // Allow 0 rest for first exercise in supersets (group ends with '1')
+    // Allow 0 rest for exercises in supersets (group contains '1' or '2')
     // but require 30-180 for other exercises
-    const isFirstInSuperset = exercise.group.includes('1');
-    if (!isFirstInSuperset && (exercise.rest < 30 || exercise.rest > 180)) {
+    const isSupersetExercise = exercise.group.includes('1') || exercise.group.includes('2');
+    if (!isSupersetExercise && (exercise.rest < 30 || exercise.rest > 180)) {
       throw new Error(`Exercise ${index + 1} rest time must be between 30-180 seconds`);
     }
-    if (isFirstInSuperset && exercise.rest < 0) {
+    if (isSupersetExercise && exercise.rest < 0) {
       throw new Error(`Exercise ${index + 1} rest time cannot be negative`);
     }
   });

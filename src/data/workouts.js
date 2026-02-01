@@ -292,7 +292,7 @@ export const workouts = {
       },
       { 
         name: 'DB Front Raise', 
-        sets: 2, 
+        sets: 3, 
         reps: '12-15', 
         rest: 0, 
         group: 'D2',

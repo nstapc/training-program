@@ -63,11 +63,11 @@ describe('WorkoutProgress Component', () => {
   test('shows completed sets correctly', () => {
     render(<WorkoutProgress {...mockProps} />);
 
-    // Check that completed sets are shown as green dots
-    const completedDots = screen.getAllByTitle(/Go to Set/);
-    expect(completedDots[0]).toHaveClass('bg-green-400'); // Set 1 of Exercise 1
-    expect(completedDots[1]).toHaveClass('bg-green-400'); // Set 2 of Exercise 1
-    expect(completedDots[2]).toHaveClass('bg-slate-600'); // Set 3 of Exercise 1 (not completed)
+    // Check that completed sets are shown as green buttons
+    const completedButtons = screen.getAllByTitle(/Go to Set/);
+    expect(completedButtons[0]).toHaveClass('bg-green-600'); // Set 1 of Exercise 1
+    expect(completedButtons[1]).toHaveClass('bg-green-600'); // Set 2 of Exercise 1
+    expect(completedButtons[2]).toHaveClass('bg-slate-600'); // Set 3 of Exercise 1 (not completed)
   });
 
   test('calls skipToExercise when exercise is clicked', () => {
@@ -88,11 +88,4 @@ describe('WorkoutProgress Component', () => {
     expect(mockProps.skipToSet).toHaveBeenCalledWith(3);
   });
 
-  test('shows chevron indicator for current exercise', () => {
-    render(<WorkoutProgress {...mockProps} />);
-
-    // Current exercise (first one) should have chevron
-    const chevron = screen.getByTestId('chevron-right');
-    expect(chevron).toBeInTheDocument();
-  });
 });

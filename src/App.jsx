@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Play, Pause, RotateCcw, Check, ChevronRight, Dumbbell, SkipForward, ChevronLeft } from 'lucide-react';
+import { Play, Pause, RotateCcw, Check, ChevronRight, Dumbbell, SkipForward, ChevronLeft, BarChart3 } from 'lucide-react';
 import { workouts } from './data/workouts';
 import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression, formatTime } from './utils/workoutUtils';
+import { saveWorkoutToHistory, logExerciseSet } from './utils/progressTracker';
 import WorkoutProgress from './components/WorkoutProgress';
+import ProgressDashboard from './components/ProgressDashboard';
 
 const WorkoutTracker = () => {
   const [selectedWorkout, setSelectedWorkout] = useState(null);
@@ -12,6 +14,7 @@ const WorkoutTracker = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [completedSets, setCompletedSets] = useState({});
+  const [showProgressDashboard, setShowProgressDashboard] = useState(false);
 
   const currentWorkout = selectedWorkout ? workouts[selectedWorkout] : null;
   const currentExercise = currentWorkout?.exercises[currentExerciseIndex];
@@ -88,6 +91,17 @@ const WorkoutTracker = () => {
   const completeSet = () => {
     const key = `${selectedWorkout}-${currentExerciseIndex}-${currentSet}`;
     setCompletedSets(prev => ({ ...prev, [key]: true }));
+
+    // Log the completed set for progress tracking
+    const exercise = currentWorkout.exercises[currentExerciseIndex];
+    logExerciseSet(
+      currentWorkout.name,
+      exercise.name,
+      currentSet,
+      null, // weight not tracked yet
+      parseInt(exercise.reps.split('-')[1] || exercise.reps), // use max rep range or exact reps
+      `Completed set ${currentSet}`
+    );
 
     // Try superset navigation first
     const supersetResult = handleSupersetNavigation({
@@ -236,6 +250,12 @@ const WorkoutTracker = () => {
     return colorConfigs[color] || colorConfigs.indigo;
   };
 
+  if (showProgressDashboard) {
+    return (
+      <ProgressDashboard onBackToWorkout={() => setShowProgressDashboard(false)} />
+    );
+  }
+
   if (!selectedWorkout) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-4 flex items-center justify-center">
@@ -246,6 +266,17 @@ const WorkoutTracker = () => {
             <h1 className="text-5xl font-bold mb-3">Select a workout</h1>
             <br></br>
             {/* <p className="text-xl text-gray-400">Select a workout</p> */}
+          </div>
+
+          {/* Progress Dashboard Button */}
+          <div className="flex justify-center mb-8">
+            <button
+              onClick={() => setShowProgressDashboard(true)}
+              className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
+            >
+              <BarChart3 size={24} />
+              <span className="text-lg font-semibold">View Progress Dashboard</span>
+            </button>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
