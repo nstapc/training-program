@@ -3,6 +3,7 @@ import { Play, Pause, RotateCcw, Check, ChevronRight, Dumbbell, SkipForward, Che
 import { workouts } from './data/workouts';
 import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression, formatTime } from './utils/workoutUtils';
 import { saveWorkoutToHistory, logExerciseSet } from './utils/progressTracker';
+import { playLyreSound, canPlayAudio } from './utils/audioUtils';
 import WorkoutProgress from './components/WorkoutProgress';
 import ProgressDashboard from './components/ProgressDashboard';
 
@@ -24,6 +25,10 @@ const WorkoutTracker = () => {
     if (isTimerRunning && currentExercise) {
       interval = setInterval(() => {
         setTimeLeft(prev => {
+          // Play sound when rest time reaches 0
+          if (prev === 1) {
+            playLyreSound();
+          }
           // Allow overtime to continue counting indefinitely
           return prev - 1;
         });
