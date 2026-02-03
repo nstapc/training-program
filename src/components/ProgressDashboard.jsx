@@ -93,7 +93,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8'];
 
   return (
-    <div className="min-h-screen bg-[url('background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
+    <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">

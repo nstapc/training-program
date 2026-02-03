@@ -63,21 +63,21 @@ const TrackingPage = ({ onBack }) => {
     }
   };
 
-  const handleDataChange = (index, field, value) => {
+    const handleDataChange = (index, field, value) => {
     const newData = [...trackingData];
     newData[index] = {
       ...newData[index],
       [field]: value
     };
     setTrackingData(newData);
+    saveData();
   };
 
-  const saveData = () => {
+      const saveData = () => {
     localStorage.setItem('trackingData', JSON.stringify(trackingData));
-    alert('Data saved successfully!');
   };
 
-  const addNewDay = () => {
+    const addNewDay = () => {
     const latestDate = new Date(trackingData[0].date);
     const nextDate = new Date(latestDate);
     nextDate.setDate(latestDate.getDate() + 1);
@@ -93,9 +93,10 @@ const TrackingPage = ({ onBack }) => {
       fats: ''
     };
     setTrackingData([newDay, ...trackingData]);
+    saveData();
   };
 
-  const fetchNutritionData = async (food, index) => {
+    const fetchNutritionData = async (food, index) => {
     if (!apiKeySaved) {
       alert('Please save your USDA API key first');
       return;
@@ -121,6 +122,7 @@ const TrackingPage = ({ onBack }) => {
         fats: mockNutritionData.fats
       };
       setTrackingData(newData);
+      saveData();
     } catch (error) {
       console.error('Error fetching nutrition data:', error);
       alert('Error fetching nutrition data');
@@ -128,7 +130,7 @@ const TrackingPage = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-[url('background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
+    <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <button
@@ -138,15 +140,7 @@ const TrackingPage = ({ onBack }) => {
           >
             ← Back
           </button>
-          <div className="flex gap-2">
-            <button
-              onClick={saveData}
-              className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black"
-              aria-label="Save data"
-            >
-              <Save size={20} className="inline mr-2" />
-              Save Data
-            </button>
+                    <div className="flex gap-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black">
               <User size={20} />
               {isSignedIn ? 'Profile' : 'Sign in'}

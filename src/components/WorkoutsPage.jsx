@@ -195,7 +195,7 @@ const WorkoutsPage = ({ onBack }) => {
 
   if (!selectedWorkout) {
     return (
-      <div className="min-h-screen bg-[url('background.png')] bg-cover bg-center bg-no-repeat text-black p-4 flex items-center justify-center">
+      <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4 flex items-center justify-center">
         <div className="max-w-4xl w-full">
           <div className="flex items-center justify-between mb-2">
             <button
@@ -243,7 +243,7 @@ const WorkoutsPage = ({ onBack }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[url('background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
+    <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-2">
           <button
