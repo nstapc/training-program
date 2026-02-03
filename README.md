@@ -2,7 +2,7 @@
 
 A comprehensive workout tracking application built with React, Tailwind CSS, and modern JavaScript best practices. **Optimized for HOME GYM training using Brad Schoenfeld's hypertrophy research and evidence-based principles.**
 
-![Workout Tracker Landing Page](landing.png)
+![Workout Tracker Landing Page](public/landing.png)
 
 ## Home Gym Equipment
 
