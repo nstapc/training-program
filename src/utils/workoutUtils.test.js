@@ -13,7 +13,6 @@ describe('Workout Data Structure', () => {
   test('each workout should have required properties', () => {
     Object.values(workouts).forEach(workout => {
       expect(workout).toHaveProperty('name');
-      expect(workout).toHaveProperty('color');
       expect(workout).toHaveProperty('description');
       expect(workout).toHaveProperty('exercises');
       expect(Array.isArray(workout.exercises)).toBe(true);
@@ -94,13 +93,6 @@ describe('Data Validation', () => {
       });
     });
   });
-
-  test('workout colors should be valid', () => {
-    const validColors = ['blue', 'orange', 'green', 'purple', 'red', 'indigo'];
-    Object.values(workouts).forEach(workout => {
-      expect(validColors).toContain(workout.color);
-    });
-  });
 });
 
 describe('Workout Progression Logic', () => {
@@ -135,7 +127,6 @@ describe('Superset Validation', () => {
   test('should throw error for superset pairs with mismatched sets', () => {
     const invalidWorkout = {
       name: 'Invalid Superset Workout',
-      color: 'blue',
       description: 'Test workout with mismatched superset sets',
       exercises: [
         { name: 'Exercise A1', sets: 4, reps: '8-10', rest: 90, group: 'A1' },

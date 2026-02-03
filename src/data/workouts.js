@@ -20,468 +20,462 @@
 export const workouts = {
   workoutA: {
     name: 'Workout A',
-    color: 'blue',
     description: 'Push (Chest/Shoulders/Triceps) - Heavy Focus',
     exercises: [
-      { 
-        name: 'DB Bench Press', 
-        sets: 4, 
-        reps: '6-8', 
-        rest: 150, 
+      {
+        name: 'DB Bench Press',
+        sets: 4,
+        reps: '6-8',
+        rest: 150,
         group: 'A',
         notes: 'Greater ROM than barbell, superior pec stretch. Control the descent.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'DB Overhead Press (Seated)', 
-        sets: 3, 
-        reps: '8-10', 
-        rest: 120, 
+      {
+        name: 'DB Overhead Press (Seated)',
+        sets: 3,
+        reps: '8-10',
+        rest: 120,
         group: 'B',
         notes: 'Neutral or pronated grip. Full lockout overhead.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Incline DB Press', 
-        sets: 3, 
-        reps: '8-10', 
-        rest: 120, 
+      {
+        name: 'Incline DB Press',
+        sets: 3,
+        reps: '8-10',
+        rest: 120,
         group: 'C',
         notes: '30-45° incline. Targets upper chest. Lengthened position emphasis.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Ring Dips', 
-        sets: 3, 
-        reps: '8-12', 
-        rest: 90, 
+      {
+        name: 'Ring Dips',
+        sets: 3,
+        reps: '8-12',
+        rest: 90,
         group: 'D',
         notes: 'Lean forward for chest emphasis. Rings turned out at top. Superior to machine dips.',
         equipment: 'Rings'
       },
-      { 
-        name: 'DB Lateral Raises', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 60, 
+      {
+        name: 'DB Lateral Raises',
+        sets: 3,
+        reps: '12-15',
+        rest: 60,
         group: 'E1',
         notes: 'Slight forward lean. Raise to shoulder height. Control eccentric.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Band Face Pulls', 
-        sets: 3, 
-        reps: '15-20', 
-        rest: 0, 
+      {
+        name: 'Band Face Pulls',
+        sets: 3,
+        reps: '15-20',
+        rest: 0,
         group: 'E2',
         notes: 'External rotation at end. Critical for shoulder health. Superset with laterals.',
         equipment: 'Bands'
       },
-      { 
-        name: 'DB Overhead Triceps Extension', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 90, 
+      {
+        name: 'DB Overhead Triceps Extension',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
         group: 'F',
         notes: 'Long head emphasis due to shoulder flexion. Deep stretch at bottom.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Ring Push-ups (Diamond)', 
-        sets: 2, 
-        reps: '12-15', 
-        rest: 60, 
+      {
+        name: 'Ring Push-ups (Diamond)',
+        sets: 2,
+        reps: '12-15',
+        rest: 60,
         group: 'G',
         notes: 'Triceps finisher. Rings increase instability and muscle activation.',
         equipment: 'Rings'
       },
     ]
   },
-  
+
   workoutB: {
     name: 'Workout B',
-    color: 'orange',
     description: 'Pull (Back/Biceps/Rear Delts) - Volume Focus',
     exercises: [
-      { 
-        name: 'Pull-ups (Various Grips)', 
-        sets: 4, 
-        reps: '6-10', 
-        rest: 150, 
+      {
+        name: 'Pull-ups (Various Grips)',
+        sets: 4,
+        reps: '6-10',
+        rest: 150,
         group: 'A',
         notes: 'Rotate grips: wide, neutral, chin-up. Superior to lat pulldown per EMG studies.',
         equipment: 'Pull-up Attachment'
       },
-      { 
-        name: 'DB Row (Chest Supported)', 
-        sets: 3, 
-        reps: '8-10', 
-        rest: 120, 
+      {
+        name: 'DB Row (Chest Supported)',
+        sets: 3,
+        reps: '8-10',
+        rest: 120,
         group: 'B',
         notes: 'Incline bench support removes momentum. Full stretch at bottom.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Ring Rows', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 90, 
+      {
+        name: 'Ring Rows',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
         group: 'C',
         notes: 'Adjust difficulty by foot position. Squeeze scapula at top.',
         equipment: 'Rings'
       },
-      { 
-        name: 'Ring Face Pulls', 
-        sets: 3, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'Ring Face Pulls',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
         group: 'D1',
         notes: 'External rotation at end. Rear delt and rotator cuff emphasis.',
         equipment: 'Rings'
       },
-      { 
-        name: 'DB Rear Delt Fly (Incline)', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 0, 
+      {
+        name: 'DB Rear Delt Fly (Incline)',
+        sets: 3,
+        reps: '12-15',
+        rest: 0,
         group: 'D2',
         notes: 'Chest on incline bench. Eliminates momentum. Superset with face pulls.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'DB Curl (Standing)', 
-        sets: 3, 
-        reps: '8-10', 
-        rest: 90, 
+      {
+        name: 'DB Curl (Standing)',
+        sets: 3,
+        reps: '8-10',
+        rest: 90,
         group: 'E',
         notes: 'Supinate at top. No swinging. Control the negative.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'DB Hammer Curl', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 60, 
+      {
+        name: 'DB Hammer Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 60,
         group: 'F',
         notes: 'Brachialis and brachioradialis emphasis. Neutral grip throughout.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Grip Work - Hand Gripper', 
-        sets: 3, 
-        reps: '10-15', 
-        rest: 60, 
+      {
+        name: 'Grip Work - Hand Gripper',
+        sets: 3,
+        reps: '10-15',
+        rest: 60,
         group: 'G',
         notes: 'Crush grip strength. Hold at close for 2-3 seconds.',
         equipment: 'Hand Gripper'
       },
     ]
   },
-  
+
   workoutC: {
     name: 'Workout C',
-    color: 'green',
     description: 'Legs (Quads/Hamstrings/Glutes) - Compound Focus',
     exercises: [
-      { 
-        name: 'DB Goblet Squat', 
-        sets: 4, 
-        reps: '8-10', 
-        rest: 150, 
+      {
+        name: 'DB Goblet Squat',
+        sets: 4,
+        reps: '8-10',
+        rest: 150,
         group: 'A',
         notes: 'Heels elevated if needed. Deep ROM. Quad dominant.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'DB Romanian Deadlift', 
-        sets: 4, 
-        reps: '8-10', 
-        rest: 120, 
+      {
+        name: 'DB Romanian Deadlift',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
         group: 'B',
         notes: 'Hinge at hips. Feel hamstring stretch. Critical for posterior chain.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Bulgarian Split Squat', 
-        sets: 3, 
-        reps: '10-12 each', 
-        rest: 90, 
+      {
+        name: 'Bulgarian Split Squat',
+        sets: 3,
+        reps: '10-12 each',
+        rest: 90,
         group: 'C',
         notes: 'Rear foot on bench. Excellent unilateral quad/glute builder.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Leg Extension (Attachment)', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 60, 
+      {
+        name: 'Leg Extension (Attachment)',
+        sets: 3,
+        reps: '12-15',
+        rest: 60,
         group: 'D1',
         notes: 'Rectus femoris isolation. Pause at top contraction.',
         equipment: 'Bench Leg Attachment'
       },
-      { 
-        name: 'Leg Curl (Attachment)', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 0, 
+      {
+        name: 'Leg Curl (Attachment)',
+        sets: 3,
+        reps: '12-15',
+        rest: 0,
         group: 'D2',
         notes: 'Hamstring isolation. Superset with extensions. Control eccentric.',
         equipment: 'Bench Leg Attachment'
       },
-      { 
-        name: 'DB Calf Raise (Single Leg)', 
-        sets: 4, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'DB Calf Raise (Single Leg)',
+        sets: 4,
+        reps: '15-20',
+        rest: 60,
         group: 'E',
         notes: 'Full stretch at bottom, full contraction at top. One leg at a time.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Plank', 
-        sets: 3, 
-        reps: '45-60s', 
-        rest: 60, 
+      {
+        name: 'Plank',
+        sets: 3,
+        reps: '45-60s',
+        rest: 60,
         group: 'F',
         notes: 'Core stability. Posterior pelvic tilt. Squeeze glutes.',
         equipment: 'Bodyweight'
       },
     ]
   },
-  
+
   workoutD: {
     name: 'Workout D',
-    color: 'purple',
     description: 'Push Variation (Chest/Shoulders/Triceps) - Hypertrophy Focus',
     exercises: [
-      { 
-        name: 'Incline DB Fly', 
-        sets: 4, 
-        reps: '10-12', 
-        rest: 90, 
+      {
+        name: 'Incline DB Fly',
+        sets: 4,
+        reps: '10-12',
+        rest: 90,
         group: 'A',
         notes: 'Deep stretch at bottom - lengthened partials for hypertrophy. Schoenfeld 2023 research.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Ring Push-ups', 
-        sets: 4, 
-        reps: '10-15', 
-        rest: 90, 
+      {
+        name: 'Ring Push-ups',
+        sets: 4,
+        reps: '10-15',
+        rest: 90,
         group: 'B',
         notes: 'Turn rings out at top. Instability increases pec and core activation.',
         equipment: 'Rings'
       },
-      { 
-        name: 'DB Arnold Press', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 90, 
+      {
+        name: 'DB Arnold Press',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
         group: 'C',
         notes: 'Rotation through movement. Hits all delt heads.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Band Lateral Raises', 
-        sets: 3, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'Band Lateral Raises',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
         group: 'D1',
         notes: 'Constant tension throughout ROM. Different resistance curve than DBs.',
         equipment: 'Bands'
       },
-      { 
-        name: 'DB Front Raise', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 0, 
+      {
+        name: 'DB Front Raise',
+        sets: 3,
+        reps: '12-15',
+        rest: 0,
         group: 'D2',
         notes: 'Anterior delt. Alternate arms or together. Superset with laterals.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Ring Flyes', 
-        sets: 3, 
-        reps: '8-12', 
-        rest: 90, 
+      {
+        name: 'Ring Flyes',
+        sets: 3,
+        reps: '8-12',
+        rest: 90,
         group: 'E',
         notes: 'Excellent stretch-mediated hypertrophy. Start with feet forward to reduce difficulty.',
         equipment: 'Rings'
       },
-      { 
-        name: 'DB Skull Crusher', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 60, 
+      {
+        name: 'DB Skull Crusher',
+        sets: 3,
+        reps: '10-12',
+        rest: 60,
         group: 'F',
         notes: 'Lower to forehead/behind head. Long head emphasis.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Power Twister - Chest Squeeze', 
-        sets: 2, 
-        reps: '12-15', 
-        rest: 60, 
+      {
+        name: 'Power Twister - Chest Squeeze',
+        sets: 2,
+        reps: '12-15',
+        rest: 60,
         group: 'G',
         notes: 'Isometric/concentric chest work. Hold at peak contraction.',
         equipment: 'Power Twister'
       },
     ]
   },
-  
+
   workoutE: {
     name: 'Workout E',
-    color: 'red',
     description: 'Pull Variation (Back/Biceps/Rear Delts) - Metabolic Focus',
     exercises: [
-      { 
-        name: 'Chin-ups (Close Grip)', 
-        sets: 4, 
-        reps: '6-10', 
-        rest: 120, 
+      {
+        name: 'Chin-ups (Close Grip)',
+        sets: 4,
+        reps: '6-10',
+        rest: 120,
         group: 'A',
         notes: 'Supinated grip. More bicep involvement. Full dead hang at bottom.',
         equipment: 'Pull-up Attachment'
       },
-      { 
-        name: 'Single-Arm DB Row', 
-        sets: 3, 
-        reps: '10-12 each', 
-        rest: 90, 
+      {
+        name: 'Single-Arm DB Row',
+        sets: 3,
+        reps: '10-12 each',
+        rest: 90,
         group: 'B',
         notes: 'One hand on bench. Full lat stretch at bottom, squeeze at top.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Ring Face Pulls to External Rotation', 
-        sets: 3, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'Ring Face Pulls to External Rotation',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
         group: 'C',
         notes: 'Pull to face, rotate hands back. Superior to cable face pulls.',
         equipment: 'Rings'
       },
-      { 
-        name: 'Band Pull-Aparts', 
-        sets: 3, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'Band Pull-Aparts',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
         group: 'D',
         notes: 'Rear delts and mid traps. Keep arms straight.',
         equipment: 'Bands'
       },
-      { 
-        name: 'DB Preacher Curl', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 90, 
+      {
+        name: 'DB Preacher Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
         group: 'E',
         notes: 'Eliminates cheating. Excellent for short head biceps. Full stretch at bottom.',
         equipment: 'Dumbbells + Preacher Attachment'
       },
-      { 
-        name: 'Incline DB Curl', 
-        sets: 3, 
-        reps: '10-12', 
-        rest: 60, 
+      {
+        name: 'Incline DB Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 60,
         group: 'F',
         notes: 'Long head emphasis - stretched position. Key for bicep peak.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'DB Reverse Curl', 
-        sets: 2, 
-        reps: '12-15', 
-        rest: 60, 
+      {
+        name: 'DB Reverse Curl',
+        sets: 2,
+        reps: '12-15',
+        rest: 60,
         group: 'G',
         notes: 'Brachioradialis and forearm extensors. Overhand grip.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Lattice Pin Hangs', 
-        sets: 2, 
-        reps: '20-30s', 
-        rest: 60, 
+      {
+        name: 'Lattice Pin Hangs',
+        sets: 2,
+        reps: '20-30s',
+        rest: 60,
         group: 'H',
         notes: 'Finger and grip strength. Dead hang position.',
         equipment: 'Lattice Pin'
       },
     ]
   },
-  
+
   workoutF: {
     name: 'Workout F',
-    color: 'indigo',
     description: 'Legs Variation (Posterior Chain/Glutes) - Unilateral Focus',
     exercises: [
-      { 
-        name: 'DB Single-Leg Romanian Deadlift', 
-        sets: 4, 
-        reps: '8-10 each', 
-        rest: 90, 
+      {
+        name: 'DB Single-Leg Romanian Deadlift',
+        sets: 4,
+        reps: '8-10 each',
+        rest: 90,
         group: 'A',
         notes: 'Balance and hamstring stretch. Hold DB on opposite side.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Reverse Lunge', 
-        sets: 3, 
-        reps: '10-12 each', 
-        rest: 90, 
+      {
+        name: 'Reverse Lunge',
+        sets: 3,
+        reps: '10-12 each',
+        rest: 90,
         group: 'B',
         notes: 'Step back, not forward. More glute/hamstring emphasis than forward lunge.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'DB Hip Thrust (Bench)', 
-        sets: 3, 
-        reps: '12-15', 
-        rest: 90, 
+      {
+        name: 'DB Hip Thrust (Bench)',
+        sets: 3,
+        reps: '12-15',
+        rest: 90,
         group: 'C',
         notes: 'Upper back on bench. Pause at top. Best exercise for glute activation.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'Leg Curl (Attachment)', 
-        sets: 4, 
-        reps: '10-12', 
-        rest: 60, 
+      {
+        name: 'Leg Curl (Attachment)',
+        sets: 4,
+        reps: '10-12',
+        rest: 60,
         group: 'D',
         notes: 'Hamstring isolation. Slow eccentric (3-4 seconds).',
         equipment: 'Bench Leg Attachment'
       },
-      { 
-        name: 'DB Step-ups', 
-        sets: 3, 
-        reps: '12-15 each', 
-        rest: 60, 
+      {
+        name: 'DB Step-ups',
+        sets: 3,
+        reps: '12-15 each',
+        rest: 60,
         group: 'E',
         notes: 'Bench height. Push through lead leg only, no push-off from back foot.',
         equipment: 'Dumbbells + Bench'
       },
-      { 
-        name: 'DB Seated Calf Raise', 
-        sets: 4, 
-        reps: '15-20', 
-        rest: 60, 
+      {
+        name: 'DB Seated Calf Raise',
+        sets: 4,
+        reps: '15-20',
+        rest: 60,
         group: 'F',
         notes: 'DB on knees. Targets soleus. Pause at stretch and contraction.',
         equipment: 'Dumbbells'
       },
-      { 
-        name: 'Hanging Leg Raise', 
-        sets: 3, 
-        reps: '10-15', 
-        rest: 60, 
+      {
+        name: 'Hanging Leg Raise',
+        sets: 3,
+        reps: '10-15',
+        rest: 60,
         group: 'G',
         notes: 'Core and hip flexors. Control the swing. Bent knee to make easier.',
         equipment: 'Pull-up Attachment'
       },
-      { 
-        name: 'Bullworker Isometric Squeeze', 
-        sets: 2, 
-        reps: '3x10s holds', 
-        rest: 60, 
+      {
+        name: 'Bullworker Isometric Squeeze',
+        sets: 2,
+        reps: '3x10s holds',
+        rest: 60,
         group: 'H',
         notes: 'Full body tension. Choose compression or extension movement.',
         equipment: 'Bullworker'

@@ -1,13 +1,20 @@
-/**
- * Progress tracking utilities for storing and retrieving workout history
- * and generating analytics data
- */
-
+// Constants for storage keys
 const STORAGE_KEYS = {
   WORKOUT_HISTORY: 'workout_history',
   USER_PROFILE: 'user_profile',
   EXERCISE_LOGS: 'exercise_logs'
 };
+
+// Constants for validation
+const MIN_WEIGHT = 0;
+const MAX_WEIGHT = 1000;
+const MIN_REPS = 1;
+const MAX_REPS = 100;
+
+/**
+ * Progress tracking utilities for storing and retrieving workout history
+ * and generating analytics data
+ */
 
 /**
  * Get workout history from localStorage
@@ -26,8 +33,20 @@ export const getWorkoutHistory = () => {
 /**
  * Save a completed workout to history
  * @param {Object} workoutData - Workout completion data
+ * @throws {Error} If workout data is invalid
  */
 export const saveWorkoutToHistory = (workoutData) => {
+  if (!workoutData || typeof workoutData !== 'object') {
+    throw new Error('Workout data must be an object');
+  }
+
+  const requiredProperties = ['name', 'exercises', 'duration'];
+  for (const prop of requiredProperties) {
+    if (!workoutData[prop]) {
+      throw new Error(`Workout data missing required property: ${prop}`);
+    }
+  }
+
   try {
     const history = getWorkoutHistory();
     const newEntry = {
@@ -36,11 +55,12 @@ export const saveWorkoutToHistory = (workoutData) => {
       date: new Date().toLocaleDateString(),
       id: Date.now()
     };
-    
+
     history.push(newEntry);
     localStorage.setItem(STORAGE_KEYS.WORKOUT_HISTORY, JSON.stringify(history));
   } catch (error) {
     console.error('Error saving workout history:', error);
+    throw error;
   }
 };
 
@@ -66,16 +86,41 @@ export const getExerciseLogs = () => {
  * @param {number} weight - Weight used (optional)
  * @param {number} reps - Reps completed
  * @param {string} notes - Additional notes (optional)
+ * @throws {Error} If parameters are invalid
  */
 export const logExerciseSet = (workoutName, exerciseName, setNumber, weight, reps, notes = '') => {
+  if (typeof workoutName !== 'string' || !workoutName.trim()) {
+    throw new Error('Workout name must be a non-empty string');
+  }
+
+  if (typeof exerciseName !== 'string' || !exerciseName.trim()) {
+    throw new Error('Exercise name must be a non-empty string');
+  }
+
+  if (!Number.isInteger(setNumber) || setNumber < 1) {
+    throw new Error('Set number must be a positive integer');
+  }
+
+  if (weight !== null && (typeof weight !== 'number' || weight < MIN_WEIGHT || weight > MAX_WEIGHT)) {
+    throw new Error(`Weight must be null or between ${MIN_WEIGHT} and ${MAX_WEIGHT}`);
+  }
+
+  if (!Number.isInteger(reps) || reps < MIN_REPS || reps > MAX_REPS) {
+    throw new Error(`Reps must be between ${MIN_REPS} and ${MAX_REPS}`);
+  }
+
+  if (typeof notes !== 'string') {
+    throw new Error('Notes must be a string');
+  }
+
   try {
     const logs = getExerciseLogs();
     const key = `${workoutName}-${exerciseName}`;
-    
+
     if (!logs[key]) {
       logs[key] = [];
     }
-    
+
     logs[key].push({
       workoutName,
       exerciseName,
@@ -86,10 +131,11 @@ export const logExerciseSet = (workoutName, exerciseName, setNumber, weight, rep
       timestamp: new Date().toISOString(),
       date: new Date().toLocaleDateString()
     });
-    
+
     localStorage.setItem(STORAGE_KEYS.EXERCISE_LOGS, JSON.stringify(logs));
   } catch (error) {
     console.error('Error logging exercise set:', error);
+    throw error;
   }
 };
 
@@ -124,14 +170,47 @@ export const getUserProfile = () => {
 /**
  * Update user profile
  * @param {Object} updates - Profile updates
+ * @throws {Error} If updates are invalid
  */
 export const updateUserProfile = (updates) => {
+  if (!updates || typeof updates !== 'object') {
+    throw new Error('Updates must be an object');
+  }
+
+  const validKeys = ['name', 'weight', 'height', 'experienceLevel', 'goals'];
+  const invalidKeys = Object.keys(updates).filter(key => !validKeys.includes(key));
+
+  if (invalidKeys.length > 0) {
+    throw new Error(`Invalid profile keys: ${invalidKeys.join(', ')}`);
+  }
+
+  if (updates.name && (typeof updates.name !== 'string' || !updates.name.trim())) {
+    throw new Error('Name must be a non-empty string');
+  }
+
+  if (updates.weight !== undefined && (typeof updates.weight !== 'number' || updates.weight < MIN_WEIGHT || updates.weight > MAX_WEIGHT)) {
+    throw new Error(`Weight must be between ${MIN_WEIGHT} and ${MAX_WEIGHT}`);
+  }
+
+  if (updates.height !== undefined && (typeof updates.height !== 'number' || updates.height < 0)) {
+    throw new Error('Height must be a non-negative number');
+  }
+
+  if (updates.experienceLevel !== undefined && !['beginner', 'intermediate', 'advanced'].includes(updates.experienceLevel)) {
+    throw new Error('Experience level must be one of: beginner, intermediate, advanced');
+  }
+
+  if (updates.goals !== undefined && (!Array.isArray(updates.goals) || !updates.goals.every(goal => typeof goal === 'string'))) {
+    throw new Error('Goals must be an array of strings');
+  }
+
   try {
     const profile = getUserProfile();
     const newProfile = { ...profile, ...updates };
     localStorage.setItem(STORAGE_KEYS.USER_PROFILE, JSON.stringify(newProfile));
   } catch (error) {
     console.error('Error updating user profile:', error);
+    throw error;
   }
 };
 

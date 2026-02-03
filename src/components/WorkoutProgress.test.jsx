@@ -57,7 +57,23 @@ describe('WorkoutProgress Component', () => {
 
     // First exercise should have active styling
     const firstExercise = screen.getByText('Exercise 1').closest('.p-4');
-    expect(firstExercise).toHaveClass('bg-blue-600');
+    expect(firstExercise).toHaveClass('bg-white/75');
+    expect(firstExercise).toHaveClass('hover:bg-white/100');
+    expect(firstExercise).toHaveClass('transition-all');
+    expect(firstExercise).toHaveClass('transform');
+    expect(firstExercise).toHaveClass('hover:scale-105');
+    expect(firstExercise).toHaveClass('shadow-lg');
+    expect(firstExercise).not.toHaveClass('rounded');
+    expect(firstExercise).not.toHaveClass('border');
+  });
+
+  test('non-clickable elements do not have hover background', () => {
+    render(<WorkoutProgress {...mockProps} />);
+
+    // The main container should not have hover background
+    const container = screen.getByText('Workout Progress').closest('div');
+    expect(container).toHaveClass('bg-white/75');
+    expect(container).not.toHaveClass('hover:bg-white/100');
   });
 
   test('shows completed sets correctly', () => {
@@ -67,7 +83,9 @@ describe('WorkoutProgress Component', () => {
     const completedButtons = screen.getAllByTitle(/Go to Set/);
     expect(completedButtons[0]).toHaveClass('bg-green-600'); // Set 1 of Exercise 1
     expect(completedButtons[1]).toHaveClass('bg-green-600'); // Set 2 of Exercise 1
-    expect(completedButtons[2]).toHaveClass('bg-slate-600'); // Set 3 of Exercise 1 (not completed)
+    expect(completedButtons[2]).toHaveClass('bg-white/75'); // Set 3 of Exercise 1 (not completed)
+    expect(completedButtons[0]).not.toHaveClass('rounded');
+    expect(completedButtons[0]).not.toHaveClass('border');
   });
 
   test('calls skipToExercise when exercise is clicked', () => {

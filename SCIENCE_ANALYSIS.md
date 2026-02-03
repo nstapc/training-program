@@ -6,7 +6,7 @@ Your training program has been completely adapted for **HOME GYM equipment** bas
 
 ---
 
-## 🏠 Home Gym Equipment Advantage
+## Home Gym Equipment Advantage
 
 ### Your Equipment Arsenal
 
@@ -290,11 +290,11 @@ This home gym program maintains ALL the scientific principles of optimal hypertr
 ✅ **12-week periodization** (accumulation → intensification → peak → deload)  
 
 **Key Advantages of Your Home Gym Setup:**
-- 🏆 Rings provide superior chest/tricep activation
-- 🏆 Dumbbells allow greater ROM than barbells
-- 🏆 Unilateral training corrects imbalances
-- 🏆 Bands add variable resistance
-- 🏆 No waiting for equipment - maximum training density
+- Rings provide superior chest/tricep activation
+- Dumbbells allow greater ROM than barbells
+- Unilateral training corrects imbalances
+- Bands add variable resistance
+- No waiting for equipment - maximum training density
 
 By following this program consistently, you should see results equal to or BETTER than a commercial gym, with the convenience of training at home.
 

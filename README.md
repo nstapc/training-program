@@ -4,7 +4,7 @@ A comprehensive workout tracking application built with React, Tailwind CSS, and
 
 ![Workout Tracker Landing Page](landing.png)
 
-## 🏠 Home Gym Equipment
+## Home Gym Equipment
 
 This program is specifically designed for the following equipment:
 
@@ -23,7 +23,7 @@ This program is specifically designed for the following equipment:
 | **Lattice Lifting Pin** | Finger/grip strength |
 | **Wooden Minibar** | Wrist work, small exercises |
 
-## 🧪 Science-Based Programming
+## Science-Based Programming
 
 This program is built on the latest research in muscle hypertrophy, including:
 
@@ -34,39 +34,39 @@ This program is built on the latest research in muscle hypertrophy, including:
 - **Progressive Overload Principles** - Multiple progression methods
 - **Periodization Models** - 12-week training blocks for continuous progress
 
-## 📊 Program Overview
+## Program Overview
 
 ### 6-Day Push/Pull/Legs Split
 - **Workout A**: Push (Chest/Shoulders/Triceps) - Heavy Focus
-- **Workout B**: Pull (Back/Biceps/Rear Delts) - Volume Focus  
+- **Workout B**: Pull (Back/Biceps/Rear Delts) - Volume Focus
 - **Workout C**: Legs (Quads/Hamstrings/Glutes) - Compound Focus
 - **Workout D**: Push Variation - Hypertrophy Focus
 - **Workout E**: Pull Variation - Metabolic Focus
 - **Workout F**: Legs Variation - Unilateral Focus
 
 ### Key Features
-- ✅ **Home gym optimized** - Every exercise uses available equipment
-- ✅ **Ring training integration** - Superior muscle activation for push movements
-- ✅ **Evidence-based exercise selection** - Based on EMG and hypertrophy research
-- ✅ **Optimal volume distribution** - 10-17 sets/muscle/week
-- ✅ **Strategic rep ranges** - 6-20 reps based on exercise type
-- ✅ **Progressive overload tracking** - Built-in progression methods
-- ✅ **Exercise notes** - Form cues and scientific rationale for each movement
+- **Home gym optimized** - Every exercise uses available equipment
+- **Ring training integration** - Superior muscle activation for push movements
+- **Evidence-based exercise selection** - Based on EMG and hypertrophy research
+- **Optimal volume distribution** - 10-17 sets/muscle/week
+- **Strategic rep ranges** - 6-20 reps based on exercise type
+- **Progressive overload tracking** - Built-in progression methods
+- **Exercise notes** - Form cues and scientific rationale for each movement
 
-## 🏋️ Training Principles
+## Training Principles
 
 ### Volume Guidelines (Based on Schoenfeld et al. 2017)
 | Muscle Group | Sets/Week | Status |
 |--------------|-----------|--------|
-| Chest | 16 | ✅ Optimal |
-| Back | 17 | ✅ Optimal |
-| Shoulders | 14 | ✅ Optimal |
-| Biceps | 14 | ✅ Optimal |
-| Triceps | 11 | ✅ Optimal |
-| Quads | 16 | ✅ Optimal |
-| Hamstrings | 15 | ✅ Optimal |
-| Glutes | 16 | ✅ Optimal |
-| Calves | 8 | ⚠️ Consider adding |
+| Chest | 16 | Optimal |
+| Back | 17 | Optimal |
+| Shoulders | 14 | Optimal |
+| Biceps | 14 | Optimal |
+| Triceps | 11 | Optimal |
+| Quads | 16 | Optimal |
+| Hamstrings | 15 | Optimal |
+| Glutes | 16 | Optimal |
+| Calves | 8 | Consider adding |
 
 ### Rep Range Strategy
 - **Heavy (6-8 reps)**: DB Bench, DB OHP, Pull-ups - strength/myofibrillar hypertrophy
@@ -79,7 +79,7 @@ This program is built on the latest research in muscle hypertrophy, including:
 3. **Ring Progression**: Progress to harder ring variations
 4. **Band Progression**: Use thicker bands or combine bands
 
-## 🎯 Home Gym Advantages
+## Home Gym Advantages
 
 Your equipment provides ADVANTAGES over commercial gyms:
 
@@ -127,7 +127,7 @@ Run the comprehensive test suite:
 npm test
 ```
 
-## 📚 Science References
+## Science References
 
 ### Key Research Papers
 - **Schoenfeld et al. (2017)** - "Dose-response relationship between weekly resistance training volume and increases in muscle mass"
@@ -142,13 +142,12 @@ npm test
 - **Periodized training** with accumulation, intensification, and peak phases
 - **Stretch-mediated hypertrophy** - emphasis on lengthened position exercises
 
-## 🏗️ Workout Data Structure
+## Workout Data Structure
 
 Each workout follows this evidence-based structure:
 ```javascript
 {
   name: 'Workout Name',
-  color: 'theme-color',
   description: 'Workout focus description',
   exercises: [
     {
@@ -164,7 +163,7 @@ Each workout follows this evidence-based structure:
 }
 ```
 
-## 📈 Periodization Model (12-Week Cycle)
+## Periodization Model (12-Week Cycle)
 
 | Phase | Weeks | Focus | Intensity |
 |-------|-------|-------|-----------|
@@ -173,7 +172,7 @@ Each workout follows this evidence-based structure:
 | Peak | 9-11 | Maximum intensity | 85-95% (0-1 RIR) |
 | Deload | 12 | Recovery | 50-60% effort |
 
-## 🎯 Implementation Guide
+## Implementation Guide
 
 1. **Week 1**: Start with conservative weights, master ring movements
 2. **Track progress**: Use the built-in workout tracker for all exercises
@@ -186,7 +185,7 @@ For detailed programming guidance, see:
 - `src/data/progressionGuide.js` - Evidence-based progression strategies
 - `SCIENCE_ANALYSIS.md` - Complete scientific rationale
 
-## 🔧 Equipment-Specific Tips
+## Equipment-Specific Tips
 
 ### Gymnastic Rings
 - Start with feet forward (easier) and progress to full extension

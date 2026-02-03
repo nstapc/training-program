@@ -1,3 +1,7 @@
+// Constants for validation
+export const REST_TIME_MIN = 30;
+export const REST_TIME_MAX = 180;
+
 /**
  * Workout utility functions for handling workout progression logic
  * and data validation
@@ -44,59 +48,110 @@ export const handleSupersetNavigation = ({
     const pairedExercise = findPairedExercise(exercises, currentExerciseIndex, currentGroup);
 
     if (pairedExercise) {
-      const pairedIndex = exercises.indexOf(pairedExercise);
-      const pairedKey = `${workoutKey}-${pairedIndex}-${currentSet}`;
-      const isPairedCompleted = completedSets[pairedKey];
-
-      // If paired exercise for this set is not completed, go to it with no rest
-      if (!isPairedCompleted) {
-        return {
-          newExerciseIndex: pairedIndex,
-          newSet: currentSet,
-          shouldRest: false,
-          timeLeft: 0,
-          isTimerRunning: false
-        };
-      }
-
-      // Both exercises completed current set - move to next set
-      if (currentSet < currentExercise.sets) {
-        // Find which exercise comes first (has '1' in group)
-        const firstExerciseIndex = currentGroup.includes('1') ? currentExerciseIndex : pairedIndex;
-        // Use rest time from the second exercise (has '2' in group) as that's where the rest period is defined
-        const secondExerciseIndex = currentGroup.includes('2') ? currentExerciseIndex : pairedIndex;
-        return {
-          newExerciseIndex: firstExerciseIndex,
-          newSet: currentSet + 1,
-          shouldRest: true,
-          timeLeft: exercises[secondExerciseIndex].rest,
-          isTimerRunning: true
-        };
-      } else {
-        // All sets complete, move to next exercise
-        const maxIndex = Math.max(currentExerciseIndex, pairedIndex);
-        if (maxIndex < exercises.length - 1) {
-          const nextExercise = exercises[maxIndex + 1];
-          return {
-            newExerciseIndex: maxIndex + 1,
-            newSet: 1,
-            shouldRest: true,
-            timeLeft: nextExercise.rest,
-            isTimerRunning: true
-          };
-        } else {
-          return {
-            newExerciseIndex: currentExerciseIndex,
-            newSet: currentSet,
-            shouldRest: false,
-            timeLeft: 0,
-            isTimerRunning: false
-          };
-        }
-      }
+      return handlePairedExerciseNavigation({
+        exercises,
+        currentExercise,
+        currentExerciseIndex,
+        currentSet,
+        completedSets,
+        workoutKey,
+        pairedExercise,
+        pairedIndex: exercises.indexOf(pairedExercise)
+      });
     }
   }
   return null;
+};
+
+// Extracted function for paired exercise navigation logic
+const handlePairedExerciseNavigation = ({
+  exercises,
+  currentExercise,
+  currentExerciseIndex,
+  currentSet,
+  completedSets,
+  workoutKey,
+  pairedExercise,
+  pairedIndex
+}) => {
+  const pairedKey = `${workoutKey}-${pairedIndex}-${currentSet}`;
+  const isPairedCompleted = completedSets[pairedKey];
+
+  // If paired exercise for this set is not completed, go to it with no rest
+  if (!isPairedCompleted) {
+    return {
+      newExerciseIndex: pairedIndex,
+      newSet: currentSet,
+      shouldRest: false,
+      timeLeft: 0,
+      isTimerRunning: false
+    };
+  }
+
+  // Both exercises completed current set - move to next set
+  if (currentSet < currentExercise.sets) {
+    return handleNextSetNavigation({
+      currentExercise,
+      currentExerciseIndex,
+      currentSet,
+      pairedIndex,
+      exercises
+    });
+  } else {
+    return handleNextExerciseNavigation({
+      currentExerciseIndex,
+      pairedIndex,
+      exercises
+    });
+  }
+};
+
+// Extracted function for next set navigation
+const handleNextSetNavigation = ({
+  currentExercise,
+  currentExerciseIndex,
+  currentSet,
+  pairedIndex,
+  exercises
+}) => {
+  // Find which exercise comes first (has '1' in group)
+  const firstExerciseIndex = currentExercise.group.includes('1') ? currentExerciseIndex : pairedIndex;
+  // Use rest time from the second exercise (has '2' in group) as that's where the rest period is defined
+  const secondExerciseIndex = currentExercise.group.includes('2') ? currentExerciseIndex : pairedIndex;
+  return {
+    newExerciseIndex: firstExerciseIndex,
+    newSet: currentSet + 1,
+    shouldRest: true,
+    timeLeft: exercises[secondExerciseIndex].rest,
+    isTimerRunning: true
+  };
+};
+
+// Extracted function for next exercise navigation
+const handleNextExerciseNavigation = ({
+  currentExerciseIndex,
+  pairedIndex,
+  exercises
+}) => {
+  const maxIndex = Math.max(currentExerciseIndex, pairedIndex);
+  if (maxIndex < exercises.length - 1) {
+    const nextExercise = exercises[maxIndex + 1];
+    return {
+      newExerciseIndex: maxIndex + 1,
+      newSet: 1,
+      shouldRest: true,
+      timeLeft: nextExercise.rest,
+      isTimerRunning: true
+    };
+  } else {
+    return {
+      newExerciseIndex: currentExerciseIndex,
+      newSet: currentExerciseIndex,
+      shouldRest: false,
+      timeLeft: 0,
+      isTimerRunning: false
+    };
+  }
 };
 
 /**
@@ -169,7 +224,7 @@ export const validateWorkoutData = (workout) => {
     throw new Error('Workout must be an object');
   }
 
-  const requiredProperties = ['name', 'color', 'description', 'exercises'];
+  const requiredProperties = ['name', 'description', 'exercises'];
   for (const prop of requiredProperties) {
     if (!workout[prop]) {
       throw new Error(`Workout missing required property: ${prop}`);
@@ -180,13 +235,13 @@ export const validateWorkoutData = (workout) => {
     throw new Error('Workout must have at least one exercise');
   }
 
-    workout.exercises.forEach((exercise, index) => {
-      const exerciseRequiredProps = ['name', 'sets', 'reps', 'rest', 'group'];
-      for (const prop of exerciseRequiredProps) {
-        if (!(prop in exercise)) {
-          throw new Error(`Exercise ${index + 1} missing required property: ${prop}`);
-        }
+  workout.exercises.forEach((exercise, index) => {
+    const exerciseRequiredProps = ['name', 'sets', 'reps', 'rest', 'group'];
+    for (const prop of exerciseRequiredProps) {
+      if (!(prop in exercise)) {
+        throw new Error(`Exercise ${index + 1} missing required property: ${prop}`);
       }
+    }
 
     if (!Number.isInteger(exercise.sets) || exercise.sets <= 0) {
       throw new Error(`Exercise ${index + 1} must have positive integer sets`);
@@ -195,8 +250,8 @@ export const validateWorkoutData = (workout) => {
     // Allow 0 rest for exercises in supersets (group contains '1' or '2')
     // but require 30-180 for other exercises
     const isSupersetExercise = exercise.group.includes('1') || exercise.group.includes('2');
-    if (!isSupersetExercise && (exercise.rest < 30 || exercise.rest > 180)) {
-      throw new Error(`Exercise ${index + 1} rest time must be between 30-180 seconds`);
+    if (!isSupersetExercise && (exercise.rest < REST_TIME_MIN || exercise.rest > REST_TIME_MAX)) {
+      throw new Error(`Exercise ${index + 1} rest time must be between ${REST_TIME_MIN}-${REST_TIME_MAX} seconds`);
     }
     if (isSupersetExercise && exercise.rest < 0) {
       throw new Error(`Exercise ${index + 1} rest time cannot be negative`);

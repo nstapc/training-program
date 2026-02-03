@@ -41,7 +41,8 @@ describe('ProgressTracker', () => {
         name: 'Workout A',
         exercises: [
           { name: 'DB Bench Press', sets: 4, reps: '6-8' }
-        ]
+        ],
+        duration: 45 // Added duration property
       };
 
       saveWorkoutToHistory(workoutData);
@@ -54,10 +55,22 @@ describe('ProgressTracker', () => {
       expect(history[0].id).toBeDefined();
     });
 
-    test('should maintain workout history across multiple saves', () => {
-      saveWorkoutToHistory({ name: 'Workout A' });
-      saveWorkoutToHistory({ name: 'Workout B' });
-      saveWorkoutToHistory({ name: 'Workout C' });
+    it('should maintain workout history across multiple saves', () => {
+      saveWorkoutToHistory({ 
+        name: 'Workout A', 
+        exercises: [{ name: 'Exercise 1', sets: 3, reps: '8-10', rest: 60, group: 'A1' }],
+        duration: 30 
+      });
+      saveWorkoutToHistory({ 
+        name: 'Workout B', 
+        exercises: [{ name: 'Exercise 2', sets: 4, reps: '10-12', rest: 90, group: 'B' }],
+        duration: 60 
+      });
+      saveWorkoutToHistory({ 
+        name: 'Workout C', 
+        exercises: [{ name: 'Exercise 3', sets: 3, reps: '6-8', rest: 60, group: 'C1' }],
+        duration: 45 
+      });
 
       const history = getWorkoutHistory();
       expect(history).toHaveLength(3);
@@ -105,7 +118,8 @@ describe('ProgressTracker', () => {
         exercises: [
           { name: 'DB Bench Press', sets: 4, reps: '6-8' },
           { name: 'DB Row', sets: 3, reps: '8-10' }
-        ]
+        ],
+        duration: 60 // Added duration property
       });
 
       logExerciseSet('Workout A', 'DB Bench Press', 1, 50, 8);
@@ -141,7 +155,11 @@ describe('ProgressTracker', () => {
 
   describe('Data Management', () => {
     test('should clear all progress data', () => {
-      saveWorkoutToHistory({ name: 'Test Workout' });
+      saveWorkoutToHistory({ 
+        name: 'Test Workout', 
+        exercises: [{ name: 'Test Exercise', sets: 3, reps: '8-10', rest: 60, group: 'A1' }],
+        duration: 30 
+      });
       logExerciseSet('Test', 'Exercise', 1, 50, 10);
 
       expect(getWorkoutHistory()).toHaveLength(1);
