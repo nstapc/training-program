@@ -481,6 +481,130 @@ export const workouts = {
         equipment: 'Bullworker'
       },
     ]
+  },
+
+  workoutCatchup: {
+    name: 'Catch-up Workout',
+    description: 'Full Body - All Muscle Groups Stimulation',
+    exercises: [
+      {
+        name: 'DB Goblet Squat',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'A',
+        notes: 'Compound quad/glute exercise. Deep ROM for maximum stimulus.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Bench Press',
+        sets: 4,
+        reps: '6-8',
+        rest: 120,
+        group: 'B',
+        notes: 'Heavy chest/shoulder/tricep compound. Greater stretch than barbell.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'Pull-ups (Neutral Grip)',
+        sets: 4,
+        reps: '6-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Back/bicep compound. Neutral grip reduces shoulder stress.',
+        equipment: 'Pull-up Attachment'
+      },
+      {
+        name: 'DB Overhead Press (Standing)',
+        sets: 3,
+        reps: '8-10',
+        rest: 90,
+        group: 'D',
+        notes: 'Shoulder/tricep compound. Standing engages core.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Romanian Deadlift',
+        sets: 3,
+        reps: '8-10',
+        rest: 90,
+        group: 'E',
+        notes: 'Posterior chain compound. Hamstring/glute/back emphasis.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Ring Dips',
+        sets: 3,
+        reps: '8-12',
+        rest: 90,
+        group: 'F',
+        notes: 'Chest/tricep/shoulder compound. Rings add instability.',
+        equipment: 'Rings'
+      },
+      {
+        name: 'Single-Arm DB Row',
+        sets: 3,
+        reps: '10-12 each',
+        rest: 90,
+        group: 'G',
+        notes: 'Back/bicep compound. Unilateral for symmetry.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Hammer Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 60,
+        group: 'H1',
+        notes: 'Bicep/brachialis compound. Neutral grip.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Overhead Triceps Extension',
+        sets: 3,
+        reps: '10-12',
+        rest: 0,
+        group: 'H2',
+        notes: 'Tricep compound. Long head emphasis. Superset with curls.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Lateral Raises',
+        sets: 3,
+        reps: '12-15',
+        rest: 60,
+        group: 'I',
+        notes: 'Shoulder isolation. Control eccentric.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Band Face Pulls',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
+        group: 'J',
+        notes: 'Rear delt/rotator cuff. Critical for shoulder health.',
+        equipment: 'Bands'
+      },
+      {
+        name: 'DB Calf Raise (Single Leg)',
+        sets: 4,
+        reps: '15-20',
+        rest: 60,
+        group: 'K',
+        notes: 'Calf isolation. Unilateral for balance.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Plank',
+        sets: 3,
+        reps: '60s',
+        rest: 60,
+        group: 'L',
+        notes: 'Core stability. Full body tension.',
+        equipment: 'Bodyweight'
+      }
+    ]
   }
 };
 
