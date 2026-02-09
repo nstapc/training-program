@@ -6,8 +6,8 @@ import { workouts } from '../data/workouts';
 import { validateWorkoutData } from './workoutUtils';
 
 describe('Workout Data Structure', () => {
-  test('should have seven workout programs', () => {
-    expect(Object.keys(workouts).length).toBe(7);
+  test('should have eight workout programs', () => {
+    expect(Object.keys(workouts).length).toBe(8);
   });
 
   test('each workout should have required properties', () => {

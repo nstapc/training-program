@@ -483,8 +483,8 @@ export const workouts = {
     ]
   },
 
-  workoutCatchup: {
-    name: 'Catch-up Workout',
+  workoutCatchupA: {
+    name: 'Catch-up Workout A',
     description: 'Full Body - All Muscle Groups Stimulation',
     exercises: [
       {
@@ -603,6 +603,130 @@ export const workouts = {
         group: 'L',
         notes: 'Core stability. Full body tension.',
         equipment: 'Bodyweight'
+      }
+    ]
+  },
+
+  workoutCatchupB: {
+    name: 'Catch-up Workout B',
+    description: 'Full Body - Metabolic Focus',
+    exercises: [
+      {
+        name: 'Ring Push-ups',
+        sets: 4,
+        reps: '10-15',
+        rest: 90,
+        group: 'A',
+        notes: 'Chest/shoulder/tricep compound. Rings increase instability and muscle activation.',
+        equipment: 'Rings'
+      },
+      {
+        name: 'Chin-ups (Close Grip)',
+        sets: 4,
+        reps: '6-10',
+        rest: 90,
+        group: 'B',
+        notes: 'Back/bicep compound. Close grip emphasizes biceps.',
+        equipment: 'Pull-up Attachment'
+      },
+      {
+        name: 'DB Arnold Press',
+        sets: 3,
+        reps: '10-12',
+        rest: 75,
+        group: 'C',
+        notes: 'Shoulder compound. Rotation hits all delt heads.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Goblet Squat',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'D',
+        notes: 'Compound quad/glute exercise. Deep ROM for maximum stimulus.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Single-Leg Romanian Deadlift',
+        sets: 3,
+        reps: '8-10 each',
+        rest: 75,
+        group: 'E',
+        notes: 'Unilateral posterior chain. Improves balance and hamstring activation.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Incline Press',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'F',
+        notes: 'Upper chest emphasis. 30-45° incline for optimal activation.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'Ring Rows',
+        sets: 3,
+        reps: '12-15',
+        rest: 75,
+        group: 'G',
+        notes: 'Back/bicep compound. Adjustable difficulty via foot position.',
+        equipment: 'Rings'
+      },
+      {
+        name: 'DB Preacher Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 60,
+        group: 'H1',
+        notes: 'Bicep isolation. Eliminates cheating. Excellent for peak.',
+        equipment: 'Dumbbells + Preacher Attachment'
+      },
+      {
+        name: 'DB Skull Crusher',
+        sets: 3,
+        reps: '10-12',
+        rest: 0,
+        group: 'H2',
+        notes: 'Tricep isolation. Long head emphasis. Superset with curls.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'Band Lateral Raises',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
+        group: 'I',
+        notes: 'Shoulder isolation. Constant tension throughout ROM.',
+        equipment: 'Bands'
+      },
+      {
+        name: 'Ring Face Pulls',
+        sets: 3,
+        reps: '15-20',
+        rest: 60,
+        group: 'J',
+        notes: 'Rear delt/rotator cuff. Critical for shoulder health and posture.',
+        equipment: 'Rings'
+      },
+      {
+        name: 'DB Seated Calf Raise',
+        sets: 4,
+        reps: '15-20',
+        rest: 60,
+        group: 'K',
+        notes: 'Calf isolation. Targets soleus. Pause at stretch and contraction.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Hanging Leg Raise',
+        sets: 3,
+        reps: '10-15',
+        rest: 60,
+        group: 'L',
+        notes: 'Core and hip flexors. Control the swing. Bent knee to make easier.',
+        equipment: 'Pull-up Attachment'
       }
     ]
   }
