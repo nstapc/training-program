@@ -1,21 +1,32 @@
 import React from 'react';
+import { Check } from 'lucide-react';
+import { formatTime } from '../utils/workoutUtils';
 
 const WorkoutProgress = ({
   exercises,
   currentExerciseIndex,
   skipToExercise,
   skipToSet,
-  isSetCompleted
+  isSetCompleted,
+  isResting,
+  timeLeft,
+  currentSet,
+  completeSet,
+  completeSetFromRest
 }) => {
   return (
-    <div className="bg-white/75 transition-all shadow-lg p-6">
+    <div className="bg-white/90 transition-all shadow-2xl p-6 border border-gray-300">
       <h3 className="text-xl font-bold mb-4 text-black">Workout Progress</h3>
       <div className="space-y-2">
         {exercises.map((exercise, idx) => (
           <div
             key={idx}
             onClick={() => skipToExercise(idx)}
-            className="p-4 cursor-pointer transition-all bg-white/75 hover:bg-white/100 transform hover:scale-105 shadow-lg"
+            className={`p-4 cursor-pointer transition-all border-2 ${
+              idx === currentExerciseIndex
+                ? 'bg-white shadow-3xl border-yellow-500'
+                : 'bg-white/90 hover:bg-white/100 transform hover:scale-105 shadow-2xl border-gray-300'
+            }`}
           >
             <div className="flex items-center justify-between">
               <div className="flex-1">
@@ -36,10 +47,10 @@ const WorkoutProgress = ({
                     skipToExercise(idx);
                     skipToSet(i + 1);
                   }}
-                  className={`px-2 py-1 text-xs cursor-pointer transition-all transform hover:scale-105 shadow-lg ${
+                  className={`px-2 py-1 text-xs cursor-pointer transition-all transform hover:scale-105 shadow-2xl border ${
                     isSetCompleted(idx, i + 1)
-                      ? 'bg-green-600 hover:bg-green-500 text-black'
-                      : 'bg-white/75 hover:bg-white/100 text-black'
+                      ? 'bg-green-600 hover:bg-green-500 text-black border-gray-400'
+                      : 'bg-white/90 hover:bg-white/100 text-black border-gray-300'
                   }`}
                   title={`Go to Set ${i + 1}`}
                   aria-label={`Go to set ${i + 1} of ${exercise.name}`}
@@ -49,6 +60,52 @@ const WorkoutProgress = ({
                 ))}
               </div>
             </div>
+            
+            {/* Show current exercise details and controls if this is the active exercise */}
+            {idx === currentExerciseIndex && (
+              <div className="mt-4 pt-4 border-t border-gray-300">
+                <div className="flex items-center gap-4 mb-4">
+                  <span className="text-lg text-black">Set {currentSet} of {exercise.sets}</span>
+                </div>
+                
+                {isResting ? (
+                  <div className="text-center mb-4">
+                    <div className="text-4xl font-bold mb-2 text-black">
+                      {formatTime(timeLeft)}
+                    </div>
+                    <p className="text-black">{timeLeft < 0 ? 'Overtime!' : 'Rest Time'}</p>
+
+                    <div className="mt-4">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          completeSetFromRest();
+                        }}
+                        className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                        aria-label={`Complete set ${currentSet} during rest`}
+                      >
+                        <Check size={20} />
+                        Completed Set {currentSet}
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        completeSet();
+                      }}
+                      className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                      aria-label={`Complete set ${currentSet}`}
+                    >
+                      <Check size={20} />
+                      Completed Set {currentSet}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         ))}
       </div>

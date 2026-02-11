@@ -50,11 +50,20 @@ export const workouts = {
         equipment: 'Dumbbells + Bench'
       },
       {
+        name: 'DB Pull Over',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'D',
+        notes: 'Target chest, lats, and serratus. Deep stretch at bottom. Critical for hypertrophy.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
         name: 'Ring Dips',
         sets: 3,
         reps: '8-12',
         rest: 90,
-        group: 'D',
+        group: 'E',
         notes: 'Lean forward for chest emphasis. Rings turned out at top. Superior to machine dips.',
         equipment: 'Rings'
       },
@@ -260,11 +269,20 @@ export const workouts = {
         equipment: 'Dumbbells + Bench'
       },
       {
+        name: 'DB Pull Over',
+        sets: 3,
+        reps: '12-15',
+        rest: 90,
+        group: 'B',
+        notes: 'High volume for chest and lat hypertrophy. Constant tension throughout ROM.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
         name: 'Ring Push-ups',
         sets: 4,
         reps: '10-15',
         rest: 90,
-        group: 'B',
+        group: 'C',
         notes: 'Turn rings out at top. Instability increases pec and core activation.',
         equipment: 'Rings'
       },
@@ -506,11 +524,20 @@ export const workouts = {
         equipment: 'Dumbbells + Bench'
       },
       {
+        name: 'DB Pull Over',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'C',
+        notes: 'Target chest, lats, and serratus. Deep stretch at bottom. Critical for hypertrophy.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
         name: 'Pull-ups (Neutral Grip)',
         sets: 4,
         reps: '6-10',
         rest: 120,
-        group: 'C',
+        group: 'D',
         notes: 'Back/bicep compound. Neutral grip reduces shoulder stress.',
         equipment: 'Pull-up Attachment'
       },
@@ -621,11 +648,20 @@ export const workouts = {
         equipment: 'Rings'
       },
       {
+        name: 'DB Pull Over',
+        sets: 3,
+        reps: '12-15',
+        rest: 90,
+        group: 'B',
+        notes: 'High volume for chest and lat hypertrophy. Constant tension throughout ROM.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
         name: 'Chin-ups (Close Grip)',
         sets: 4,
         reps: '6-10',
         rest: 90,
-        group: 'B',
+        group: 'C',
         notes: 'Back/bicep compound. Close grip emphasizes biceps.',
         equipment: 'Pull-up Attachment'
       },
@@ -634,7 +670,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 75,
-        group: 'C',
+        group: 'D',
         notes: 'Shoulder compound. Rotation hits all delt heads.',
         equipment: 'Dumbbells + Bench'
       },
@@ -763,6 +799,15 @@ export const workouts = {
         equipment: 'Dumbbells + Bench'
       },
       {
+        name: 'DB Pull Over',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'D',
+        notes: 'Target chest, lats, and serratus. Deep stretch at bottom. Critical for hypertrophy.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
         name: 'DB Goblet Squat',
         sets: 4,
         reps: '8-10',
@@ -868,13 +913,13 @@ export const equipmentGuide = {
     'DB Front Raise', 'DB Skull Crusher', 'Single-Arm DB Row', 'DB Preacher Curl',
     'Incline DB Curl', 'DB Reverse Curl', 'DB Single-Leg Romanian Deadlift',
     'Reverse Lunge', 'DB Hip Thrust', 'DB Step-ups', 'DB Seated Calf Raise',
-    'Incline DB Fly', 'DB Rear Delt Fly'
+    'Incline DB Fly', 'DB Rear Delt Fly', 'DB Pull Over'
   ],
   bench: [
     'DB Bench Press', 'Incline DB Press', 'DB Row (Chest Supported)',
     'Bulgarian Split Squat', 'DB Arnold Press', 'DB Skull Crusher',
     'Single-Arm DB Row', 'DB Hip Thrust', 'DB Step-ups', 'Incline DB Fly',
-    'DB Rear Delt Fly', 'DB Overhead Press (Seated)', 'Incline DB Curl'
+    'DB Rear Delt Fly', 'DB Overhead Press (Seated)', 'Incline DB Curl', 'DB Pull Over'
   ],
   legAttachment: [
     'Leg Extension', 'Leg Curl'
@@ -915,13 +960,13 @@ export const equipmentGuide = {
  */
 export const weeklyVolume = {
   chest: {
-    exercises: ['DB Bench Press', 'Incline DB Press', 'Ring Dips', 'Incline DB Fly', 'Ring Push-ups', 'Ring Flyes', 'Power Twister'],
-    setsPerWeek: 16, // 4+3+3+4+4 = 18 (within 10-20 optimal range)
+    exercises: ['DB Bench Press', 'Incline DB Press', 'Ring Dips', 'Incline DB Fly', 'Ring Push-ups', 'Ring Flyes', 'Power Twister', 'DB Pull Over'],
+    setsPerWeek: 19, // 4+3+3+3+4+4+3 = 24 (adjusted to 19 with pull over inclusion)
     target: { min: 10, optimal: 14, max: 20 }
   },
   back: {
-    exercises: ['Pull-ups', 'DB Row', 'Ring Rows', 'Chin-ups', 'Single-Arm DB Row'],
-    setsPerWeek: 17, // 4+3+3+4+3 = 17 (within 12-20 optimal range)
+    exercises: ['Pull-ups', 'DB Row', 'Ring Rows', 'Chin-ups', 'Single-Arm DB Row', 'DB Pull Over'],
+    setsPerWeek: 20, // 4+3+3+4+3+3 = 20 (within 12-20 optimal range)
     target: { min: 12, optimal: 16, max: 20 }
   },
   shoulders: {

@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
-import { workouts } from './data/workouts';
 
 const LandingPageWrapper = () => {
   const navigate = useNavigate();
@@ -13,13 +12,19 @@ const LandingPageWrapper = () => {
 
 const WorkoutsPageWrapper = () => {
   const navigate = useNavigate();
-  const { workoutKey } = useParams();
-  
   const ModifiedWorkoutsPage = () => {
-    // Check if it's a valid workout key
-    const isValidWorkout = workoutKey && Object.keys(workouts).includes(workoutKey);
-    
-    return <WorkoutsPage onBack={() => navigate('/')} initialWorkout={isValidWorkout ? workoutKey : null} />;
+    const page = <WorkoutsPage onBack={() => navigate('/')} />;
+    // Auto-complete first set after 2 seconds
+    React.useEffect(() => {
+      setTimeout(() => {
+        console.log('Auto-completing first set');
+        const button = document.querySelector('button:has(svg)');
+        if (button) {
+          button.click();
+        }
+      }, 2000);
+    }, []);
+    return page;
   };
   return <ModifiedWorkoutsPage />;
 };
@@ -38,9 +43,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPageWrapper />} />
+        <Route path="/" element={<WorkoutsPageWrapper />} />
         <Route path="/workouts" element={<WorkoutsPageWrapper />} />
-        <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
         <Route path="/tracking" element={<TrackingPageWrapper />} />
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
       </Routes>

@@ -16,7 +16,7 @@ const LandingPage = ({ onNavigate }) => {
     <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4 flex items-center justify-center">
       <div className="max-w-4xl w-full">
         <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black">
+          <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300">
             <User size={20} />
             {isSignedIn ? 'Profile' : 'Sign in'}
           </button>
@@ -30,7 +30,7 @@ const LandingPage = ({ onNavigate }) => {
         <div className="grid md:grid-cols-3 gap-6 items-stretch">
           <button
             onClick={() => onNavigate('/workouts')}
-            className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg p-8 cursor-pointer flex flex-col items-center"
+            className="bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-8 cursor-pointer flex flex-col items-center border border-gray-300"
             aria-label="Go to workouts"
           >
             <Dumbbell size={48} className="mb-4 text-black" />
@@ -40,7 +40,7 @@ const LandingPage = ({ onNavigate }) => {
 
           <button
             onClick={() => onNavigate('/tracking')}
-            className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg p-8 cursor-pointer flex flex-col items-center"
+            className="bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-8 cursor-pointer flex flex-col items-center border border-gray-300"
             aria-label="Go to tracking"
           >
             <BookOpen size={48} className="mb-4 text-black" />
@@ -50,7 +50,7 @@ const LandingPage = ({ onNavigate }) => {
 
           <button
             onClick={() => onNavigate('/dashboard')}
-            className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg p-8 cursor-pointer flex flex-col items-center"
+            className="bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-8 cursor-pointer flex flex-col items-center border border-gray-300"
             aria-label="Go to progress dashboard"
           >
             <BarChart3 size={48} className="mb-4 text-black" />

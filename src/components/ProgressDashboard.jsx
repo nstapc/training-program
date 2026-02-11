@@ -100,7 +100,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
           <div className="flex items-center gap-4">
             <button
               onClick={onBackToWorkout}
-              className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black"
+              className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             >
               ← Back
             </button>
@@ -110,7 +110,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </div>
           </div>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
               <User size={20} />
               {profile && profile.name ? 'Profile' : 'Sign in'}
             </button>
@@ -119,7 +119,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
 
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-black">Total Workouts</p>
@@ -129,7 +129,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </div>
           </div>
 
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-black">Weekly Average</p>
@@ -139,7 +139,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </div>
           </div>
 
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-black">Total Volume</p>
@@ -149,7 +149,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </div>
           </div>
 
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-black">Consistency</p>
@@ -163,7 +163,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {/* Weekly Volume Chart */}
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-black">
               <TrendingUp size={20} className="text-black" />
               Weekly Volume
@@ -188,7 +188,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
           </div>
 
           {/* Workout Frequency Pie Chart */}
-          <div className="bg-white/75 transition-all shadow-lg p-6">
+          <div className="bg-white/75 transition-all shadow-2xl p-6">
             <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-black">
               <PieChart size={20} className="text-black" />
               Workout Distribution
@@ -222,7 +222,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
         </div>
 
         {/* Exercise Performance */}
-        <div className="bg-white/75 transition-all shadow-lg p-6 mb-8">
+        <div className="bg-white/75 transition-all shadow-2xl p-6 mb-8">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold flex items-center gap-2 text-black">
               <Target size={20} className="text-black" />
@@ -232,7 +232,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
               <select
                 value={selectedExercise}
                 onChange={(e) => setSelectedExercise(e.target.value)}
-                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-lg"
+                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-2xl"
               >
                 <option value="">Select an exercise</option>
                 {allExercises.map(exercise => (
@@ -242,7 +242,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
               <select
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
-                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-lg"
+                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-2xl"
               >
                 <option value="7">Last 7 days</option>
                 <option value="14">Last 14 days</option>
@@ -271,14 +271,14 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
         </div>
 
         {/* Recent Workouts */}
-        <div className="bg-white/75 transition-all shadow-lg p-6">
+        <div className="bg-white/75 transition-all shadow-2xl p-6">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-black">
               <Calendar size={20} className="text-black" />
               Recent Workouts
             </h3>
           <div className="space-y-3">
             {history.slice(0, 10).map((workout, index) => (
-              <div key={workout.id || index} className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg p-4">
+              <div key={workout.id || index} className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold">{workout.name}</h4>

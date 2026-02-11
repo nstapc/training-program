@@ -135,13 +135,13 @@ const TrackingPage = ({ onBack }) => {
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={onBack}
-            className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black"
+            className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             aria-label="Back"
           >
             ← Back
           </button>
                     <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
               <User size={20} />
               {isSignedIn ? 'Profile' : 'Sign in'}
             </button>
@@ -151,7 +151,7 @@ const TrackingPage = ({ onBack }) => {
         <h1 className="text-4xl font-bold text-center mb-8 text-black">Daily Tracking</h1>
 
         {/* USDA API Key Configuration */}
-        <div className="bg-white/75 shadow-lg p-6 mb-8">
+        <div className="bg-white/75 shadow-2xl p-6 mb-8">
           <h2 className="text-2xl font-bold mb-4 text-black">USDA API Key Configuration</h2>
           <div className="flex gap-4 items-center">
             <input
@@ -163,7 +163,7 @@ const TrackingPage = ({ onBack }) => {
             />
             <button
               onClick={saveApiKey}
-              className="px-6 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black"
+              className="px-6 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             >
               Save API Key
             </button>
@@ -172,12 +172,12 @@ const TrackingPage = ({ onBack }) => {
         </div>
 
         {/* Tracking Spreadsheet */}
-        <div className="bg-white/75 shadow-lg p-6">
+        <div className="bg-white/75 shadow-2xl p-6">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-2xl font-bold text-black">Daily Log</h2>
             <button
               onClick={addNewDay}
-              className="px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-lg text-black"
+              className="px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             >
               Add New Day
             </button>

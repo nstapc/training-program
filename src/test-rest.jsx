@@ -1,10 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
-import { workouts } from './data/workouts';
 
 const LandingPageWrapper = () => {
   const navigate = useNavigate();
@@ -13,13 +12,29 @@ const LandingPageWrapper = () => {
 
 const WorkoutsPageWrapper = () => {
   const navigate = useNavigate();
-  const { workoutKey } = useParams();
-  
   const ModifiedWorkoutsPage = () => {
-    // Check if it's a valid workout key
-    const isValidWorkout = workoutKey && Object.keys(workouts).includes(workoutKey);
-    
-    return <WorkoutsPage onBack={() => navigate('/')} initialWorkout={isValidWorkout ? workoutKey : null} />;
+    const page = <WorkoutsPage onBack={() => navigate('/')} />;
+    // Auto-complete first set after 1 second, then show rest
+    React.useEffect(() => {
+      setTimeout(() => {
+        console.log('Auto-completing first set');
+        const buttons = document.querySelectorAll('button');
+        const completeButton = Array.from(buttons).find(button => 
+          button.textContent.includes('Completed')
+        );
+        if (completeButton) {
+          completeButton.click();
+          console.log('Complete button clicked');
+          // After 1 second, simulate rest
+          setTimeout(() => {
+            console.log('Simulating rest period');
+          }, 1000);
+        } else {
+          console.log('Complete button not found');
+        }
+      }, 1000);
+    }, []);
+    return page;
   };
   return <ModifiedWorkoutsPage />;
 };
@@ -38,9 +53,8 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPageWrapper />} />
+        <Route path="/" element={<WorkoutsPageWrapper />} />
         <Route path="/workouts" element={<WorkoutsPageWrapper />} />
-        <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
         <Route path="/tracking" element={<TrackingPageWrapper />} />
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
       </Routes>
