@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Save, User } from 'lucide-react';
 import { getUserProfile } from '../utils/progressTracker';
 
 const TrackingPage = ({ onBack }) => {
@@ -138,11 +137,10 @@ const TrackingPage = ({ onBack }) => {
             className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             aria-label="Back"
           >
-            ← Back
+            Back
           </button>
                     <div className="flex gap-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
-              <User size={20} />
               {isSignedIn ? 'Profile' : 'Sign in'}
             </button>
           </div>

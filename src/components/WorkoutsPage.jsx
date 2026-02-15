@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Play, Pause, RotateCcw, Check, ChevronRight, Dumbbell, SkipForward, ChevronLeft, BarChart3, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { workouts } from '../data/workouts';
 import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression, formatTime } from '../utils/workoutUtils';
@@ -191,15 +190,13 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
               className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
               aria-label="Back"
             >
-              ← Back
+              Back
             </button>
             <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300">
-            <User size={20} />
             {isSignedIn ? 'Profile' : 'Sign in'}
           </button>
           </div>
           <div className="text-center mb-12">
-            <Dumbbell size={64} className="mx-auto mb-4 text-black" />
             <br></br>
             <h1 className="text-5xl font-bold mb-3 text-black">Select a workout</h1>
             <br></br>
@@ -218,7 +215,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
                   <p className="text-sm mb-4 text-black">{workout.description}</p>
                   <div className="space-y-1 text-sm text-black">
                     {workout.exercises.map((exercise, index) => (
-                      <p key={index}>• {exercise.name}</p>
+                      <p key={index}>- {exercise.name}</p>
                     ))}
                   </div>
                 </div>
@@ -239,10 +236,9 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
             className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
             aria-label="Back"
           >
-            ← Back
+            Back
           </button>
           <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300">
-            <User size={20} />
             {isSignedIn ? 'Profile' : 'Sign in'}
           </button>
         </div>

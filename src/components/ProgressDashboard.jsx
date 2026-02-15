@@ -16,14 +16,10 @@ import {
 import { 
   Calendar, 
   TrendingUp, 
-  Users, 
   Target, 
   Clock, 
   Activity, 
   BarChart3,
-  Plus,
-  User,
-  Settings,
   AlertCircle
 } from 'lucide-react';
 import { getWorkoutHistory, getExerciseTrends, getTrainingFrequency, getWeeklyVolumeSummary, getUserProfile } from '../utils/progressTracker';
@@ -102,7 +98,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
               onClick={onBackToWorkout}
               className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
             >
-              ← Back
+              Back
             </button>
             <div>
               <h1 className="text-3xl font-bold text-black">Progress Dashboard</h1>
@@ -111,7 +107,6 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
           </div>
           <div className="flex gap-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
-              <User size={20} />
               {profile && profile.name ? 'Profile' : 'Sign in'}
             </button>
           </div>

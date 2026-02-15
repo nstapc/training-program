@@ -50,25 +50,25 @@ export const progressionGuide = {
       description: 'Increase weight while maintaining rep range',
       method: 'Add 2.5-5lbs (1-2.5kg) when you can complete all sets/reps with good form',
       frequency: 'Weekly or bi-weekly',
-      example: 'Bench Press: 3x8 @ 185lbs → 3x8 @ 190lbs'
+      example: 'Bench Press: 3x8 @ 185lbs to 3x8 @ 190lbs'
     },
     volumeProgression: {
       description: 'Increase number of sets or reps',
       method: 'Add 1 set OR add 1-2 reps to last set when hitting rep targets',
       frequency: 'Every 2-3 weeks',
-      example: 'Lat Pulldown: 3x10 → 4x10 OR 3x12'
+      example: 'Lat Pulldown: 3x10 to 4x10 OR 3x12'
     },
     densityProgression: {
       description: 'Decrease rest time or increase tempo',
       method: 'Reduce rest by 15-30 seconds OR slow eccentric phase',
       frequency: 'Monthly',
-      example: 'Squat: 3x8 @ 2min rest → 3x8 @ 90sec rest'
+      example: 'Squat: 3x8 @ 2min rest to 3x8 @ 90sec rest'
     },
     intensityProgression: {
       description: 'Increase training intensity techniques',
       method: 'Add drop sets, rest-pause, or partial reps',
       frequency: 'Every 4-6 weeks',
-      example: 'Curl: 3x10 → 3x10 + 1x failure drop set'
+      example: 'Curl: 3x10 to 3x10 + 1x failure drop set'
     }
   },
 

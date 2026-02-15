@@ -35,7 +35,7 @@ const WorkoutProgress = ({
                   <span className="font-semibold text-black">{exercise.name}</span>
                 </div>
                 <p className="text-sm text-black">
-                  {exercise.sets} × {exercise.reps} | {exercise.rest}s rest
+                  {exercise.sets} x {exercise.reps} | {exercise.rest}s rest
                 </p>
               </div>
               <div className="flex gap-2">

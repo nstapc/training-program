@@ -52,9 +52,9 @@ describe('WorkoutProgress Component', () => {
     render(<WorkoutProgress {...mockProps} />);
 
     // Check exercise details are displayed correctly
-    const exerciseDetails = screen.getAllByText(/×/);
+    const exerciseDetails = screen.getAllByText(/x/);
     expect(exerciseDetails.length).toBe(3); // Should have 3 exercise detail lines
-    expect(screen.getByText('4 × 10-12 | 90s rest')).toBeInTheDocument();
+    expect(screen.getByText('4 x 10-12 | 90s rest')).toBeInTheDocument();
   });
 
   test('highlights current exercise', () => {

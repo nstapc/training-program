@@ -46,7 +46,7 @@ export const workouts = {
         reps: '8-10',
         rest: 120,
         group: 'C',
-        notes: '30-45° incline. Targets upper chest. Lengthened position emphasis.',
+        notes: '30-45 deg incline. Targets upper chest. Lengthened position emphasis.',
         equipment: 'Dumbbells + Bench'
       },
       {
@@ -698,7 +698,7 @@ export const workouts = {
         reps: '10-12',
         rest: 90,
         group: 'F',
-        notes: 'Upper chest emphasis. 30-45° incline for optimal activation.',
+        notes: 'Upper chest emphasis. 30-45 deg incline for optimal activation.',
         equipment: 'Dumbbells + Bench'
       },
       {
