@@ -132,7 +132,7 @@ const WorkoutProgress = ({
                                 skipToExercise(idx);
                                 skipToSet(i + 1);
                               }}
-                              className={`px-2 py-1 text-xs cursor-pointer transition-all transform hover:scale-105 shadow-2xl border ${
+                              className={`px-2 py-1 text-xs cursor-pointer transition-all transform shadow-2xl border ${
                                 isSetCompleted(idx, i + 1)
                                   ? 'bg-green-600 hover:bg-green-500 text-black border-gray-400'
                                   : 'bg-white/90 hover:bg-white/100 text-black border-gray-300'
@@ -166,7 +166,7 @@ const WorkoutProgress = ({
                                     e.stopPropagation();
                                     completeSetFromRest();
                                   }}
-                                  className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                                  className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform shadow-2xl text-black border border-gray-300"
                                   aria-label={`Complete set ${currentSet} during rest`}
                                 >
                                   <Check size={20} />
@@ -181,7 +181,7 @@ const WorkoutProgress = ({
                                   e.stopPropagation();
                                   completeSet();
                                 }}
-                                className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                                className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform shadow-2xl text-black border border-gray-300"
                                 aria-label={`Complete set ${currentSet}`}
                               >
                                 <Check size={20} />
@@ -209,7 +209,7 @@ const WorkoutProgress = ({
                 className={`p-4 cursor-pointer transition-all border-2 ${
                   isCurrent
                     ? 'bg-white shadow-3xl border-yellow-500'
-                    : 'bg-white/90 hover:bg-white/100 transform hover:scale-105 shadow-2xl border-gray-300'
+                    : 'bg-white/90 hover:bg-white/100 transform shadow-2xl border-gray-300'
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -231,7 +231,7 @@ const WorkoutProgress = ({
                           skipToExercise(idx);
                           skipToSet(i + 1);
                         }}
-                        className={`px-2 py-1 text-xs cursor-pointer transition-all transform hover:scale-105 shadow-2xl border ${
+                        className={`px-2 py-1 text-xs cursor-pointer transition-all transform shadow-2xl border ${
                           isSetCompleted(idx, i + 1)
                             ? 'bg-green-600 hover:bg-green-500 text-black border-gray-400'
                             : 'bg-white/90 hover:bg-white/100 text-black border-gray-300'
@@ -265,7 +265,7 @@ const WorkoutProgress = ({
                               e.stopPropagation();
                               completeSetFromRest();
                             }}
-                            className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                            className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform shadow-2xl text-black border border-gray-300"
                             aria-label={`Complete set ${currentSet} during rest`}
                           >
                             <Check size={20} />
@@ -280,7 +280,7 @@ const WorkoutProgress = ({
                             e.stopPropagation();
                             completeSet();
                           }}
-                          className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+                          className="w-full bg-white/90 hover:bg-white/100 py-2 font-semibold flex items-center justify-center gap-2 transition-all transform shadow-2xl text-black border border-gray-300"
                           aria-label={`Complete set ${currentSet}`}
                         >
                           <Check size={20} />

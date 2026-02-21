@@ -96,7 +96,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
           <div className="flex items-center gap-4">
             <button
               onClick={onBackToWorkout}
-              className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
+              className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black"
             >
               Back
             </button>
@@ -106,7 +106,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </div>
           </div>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black">
               {profile && profile.name ? 'Profile' : 'Sign in'}
             </button>
           </div>
@@ -227,7 +227,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
               <select
                 value={selectedExercise}
                 onChange={(e) => setSelectedExercise(e.target.value)}
-                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-2xl"
+                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform shadow-2xl"
               >
                 <option value="">Select an exercise</option>
                 {allExercises.map(exercise => (
@@ -237,7 +237,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
               <select
                 value={timeRange}
                 onChange={(e) => setTimeRange(e.target.value)}
-                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform hover:scale-105 shadow-2xl"
+                className="bg-white/75 hover:bg-white/100 text-black px-3 py-2 border transition-all transform shadow-2xl"
               >
                 <option value="7">Last 7 days</option>
                 <option value="14">Last 14 days</option>
@@ -273,7 +273,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
             </h3>
           <div className="space-y-3">
             {history.slice(0, 10).map((workout, index) => (
-              <div key={workout.id || index} className="bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-4">
+              <div key={workout.id || index} className="bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold">{workout.name}</h4>

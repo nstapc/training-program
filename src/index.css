@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+/* react-data-grid theme overrides */
+.rdg {
+  border-radius: 0.5rem;
+  border: 1px solid var(--color-border, #e5e7eb);
+  font-size: 0.875rem;
+}
+.rdg-header-row {
+  background: var(--color-surface, #f9fafb);
+  font-weight: 600;
+}
+.rdg-row:hover {
+  background: var(--color-hover, #f3f4f6);
+}
+.dark .rdg {
+  --rdg-background-color: #1f2937;
+  --rdg-header-background-color: #111827;
+  --rdg-row-hover-background-color: #374151;
+  --rdg-border-color: #374151;
+  color: #f9fafb;
+}

@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
+import NutritionGrid from './components/NutritionGrid';
 import InstallPrompt from './components/InstallPrompt';
 import { workouts } from './data/workouts';
 
@@ -35,6 +36,11 @@ const ProgressDashboardWrapper = () => {
   return <ProgressDashboard onBackToWorkout={() => navigate('/')} />;
 };
 
+const NutritionGridWrapper = () => {
+  const navigate = useNavigate();
+  return <NutritionGrid onBack={() => navigate('/')} />;
+};
+
 const App = () => {
   return (
     <Router>
@@ -44,6 +50,7 @@ const App = () => {
         <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
         <Route path="/tracking" element={<TrackingPageWrapper />} />
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
+        <Route path="/nutrition" element={<NutritionGridWrapper />} />
       </Routes>
       <InstallPrompt />
     </Router>

@@ -187,12 +187,12 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
           <div className="flex items-center justify-between mb-2">
             <button
               onClick={onBack}
-              className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+              className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300"
               aria-label="Back"
             >
               Back
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300">
             {isSignedIn ? 'Profile' : 'Sign in'}
           </button>
           </div>
@@ -207,7 +207,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
               <button
                 key={workoutKey}
                 onClick={() => selectWorkout(workoutKey)}
-                className="bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl p-8 cursor-pointer flex flex-col w-full text-left border border-gray-300"
+                className="bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl p-8 cursor-pointer flex flex-col w-full text-left border border-gray-300"
                 aria-label={`Select ${workout.name}`}
               >
                 <div className="text-left flex-1">
@@ -233,12 +233,12 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
         <div className="flex items-center justify-between mb-2">
           <button
             onClick={backToMenu}
-            className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300"
+            className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300"
             aria-label="Back"
           >
             Back
           </button>
-          <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black border border-gray-300">
+                              <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300">
             {isSignedIn ? 'Profile' : 'Sign in'}
           </button>
         </div>

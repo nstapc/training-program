@@ -120,13 +120,13 @@ const TrackingPage = ({ onBack }) => {
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={onBack}
-            className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
+            className="text-sm px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black"
             aria-label="Back"
           >
             Back
           </button>
           <div className="flex gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black">
               {isSignedIn ? 'Profile' : 'Sign in'}
             </button>
           </div>
@@ -150,7 +150,7 @@ const TrackingPage = ({ onBack }) => {
             <h2 className="text-2xl font-bold text-black">Daily Log</h2>
             <button
               onClick={addNewDay}
-              className="px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform hover:scale-105 shadow-2xl text-black"
+              className="px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black"
             >
               Add New Day
             </button>
