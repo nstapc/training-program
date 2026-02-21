@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
+import InstallPrompt from './components/InstallPrompt';
 import { workouts } from './data/workouts';
 
 const LandingPageWrapper = () => {
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/tracking" element={<TrackingPageWrapper />} />
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
       </Routes>
+      <InstallPrompt />
     </Router>
   );
 };
