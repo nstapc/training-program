@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Set default font to Times New Roman */
+html {
+  font-family: 'Times New Roman', Times, serif;
+}
+
 /* react-data-grid theme overrides */
 .rdg {
   border-radius: 0.5rem;

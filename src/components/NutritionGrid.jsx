@@ -1,267 +1,205 @@
-import React, { useState, useEffect } from 'react';
-import { DataGrid } from 'react-data-grid';
-import 'react-data-grid/lib/styles.css';
+import React, { useState, useEffect, useRef } from 'react';
 
-const initialRows = [
-  {
-    id: 1,
-    date: new Date().toISOString().split('T')[0],
-    food: '',
-    qty: 1,
-    unit: 'serving',
-    calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
-    fiber: 0
-  }
-];
+const makeRow = () => ({
+  id: Date.now() + Math.random(),
+  date: new Date().toISOString().split('T')[0],
+  food: '',
+  qty: '1',
+  unit: 'serving',
+  calories: '',
+  protein: '',
+  carbs: '',
+  fat: '',
+  fiber: '',
+});
 
-const columns = [
-  {
-    key: 'date',
-    name: 'Date',
-    width: 120,
-    editable: true
-  },
-  {
-    key: 'food',
-    name: 'Food',
-    width: 200,
-    editable: true
-  },
-  {
-    key: 'qty',
-    name: 'Qty',
-    width: 80,
-    editable: true
-  },
-  {
-    key: 'unit',
-    name: 'Unit',
-    width: 100,
-    editable: true
-  },
-  {
-    key: 'calories',
-    name: 'Calories',
-    width: 100,
-    editable: false
-  },
-  {
-    key: 'protein',
-    name: 'Protein (g)',
-    width: 100,
-    editable: false
-  },
-  {
-    key: 'carbs',
-    name: 'Carbs (g)',
-    width: 100,
-    editable: false
-  },
-  {
-    key: 'fat',
-    name: 'Fat (g)',
-    width: 100,
-    editable: false
-  },
-  {
-    key: 'fiber',
-    name: 'Fiber (g)',
-    width: 100,
-    editable: false
-  }
-];
-
-const NutritionGrid = () => {
+const NutritionGrid = ({ onBack }) => {
   const [rows, setRows] = useState(() => {
-    const saved = localStorage.getItem('nutritionRows');
-    return saved ? JSON.parse(saved) : initialRows;
+    try {
+      const saved = localStorage.getItem('nutritionRows');
+      return saved ? JSON.parse(saved) : [makeRow()];
+    } catch {
+      return [makeRow()];
+    }
   });
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const prevFoodRef = useRef({});
 
   useEffect(() => {
     localStorage.setItem('nutritionRows', JSON.stringify(rows));
   }, [rows]);
 
-  const handleCellChange = async (rowIndex, columnKey, value) => {
-    const newRows = [...rows];
-    newRows[rowIndex] = { ...newRows[rowIndex], [columnKey]: value };
-    setRows(newRows);
-
-    // Auto-fill nutrition data when food name is entered
-    if (columnKey === 'food' && value.trim()) {
-      await fetchNutritionData(rowIndex, value.trim());
-    }
+  const updateCell = (id, field, value) => {
+    setRows(prev =>
+      prev.map(row => (row.id === id ? { ...row, [field]: value } : row))
+    );
   };
 
-  const fetchNutritionData = async (rowIndex, foodName) => {
+  const fetchNutritionData = async (rowId, foodName) => {
+    if (!foodName.trim()) return;
+    if (prevFoodRef.current[rowId] === foodName) return;
+    prevFoodRef.current[rowId] = foodName;
+
     setLoading(true);
     setError('');
-    
     try {
       const response = await fetch('/api/nutrition', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ foodName }),
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch nutrition data');
-      }
-
+      if (!response.ok) throw new Error('API error');
       const data = await response.json();
-      
-      if (data.error) {
-        setError(data.error);
-        return;
-      }
+      if (data.error) { setError(data.error); return; }
 
-      const newRows = [...rows];
-      newRows[rowIndex] = {
-        ...newRows[rowIndex],
-        calories: data.calories || 0,
-        protein: data.protein || 0,
-        carbs: data.carbs || 0,
-        fat: data.fat || 0,
-        fiber: data.fiber || 0
-      };
-      setRows(newRows);
+      setRows(prev =>
+        prev.map(row =>
+          row.id === rowId
+            ? { ...row, calories: data.calories ?? '', protein: data.protein ?? '', carbs: data.carbs ?? '', fat: data.fat ?? '', fiber: data.fiber ?? '' }
+            : row
+        )
+      );
     } catch (err) {
-      setError('Error fetching nutrition data');
+      setError('Could not fetch nutrition data. Check that /api/nutrition is set up.');
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  const addRow = () => {
-    const newRow = {
-      id: Date.now(),
-      date: new Date().toISOString().split('T')[0],
-      food: '',
-      qty: 1,
-      unit: 'serving',
-      calories: 0,
-      protein: 0,
-      carbs: 0,
-      fat: 0,
-      fiber: 0
-    };
-    setRows([...rows, newRow]);
-  };
+  const addRow = () => setRows(prev => [...prev, makeRow()]);
 
-  const deleteRow = (rowIndex) => {
-    if (rows.length > 1) {
-      const newRows = rows.filter((_, index) => index !== rowIndex);
-      setRows(newRows);
-    }
+  const deleteRow = (id) => {
+    if (rows.length === 1) return;
+    setRows(prev => prev.filter(r => r.id !== id));
   };
 
   const totals = rows.reduce(
     (acc, row) => {
       const qty = parseFloat(row.qty) || 1;
       return {
-        calories: acc.calories + (row.calories * qty),
-        protein: acc.protein + (row.protein * qty),
-        carbs: acc.carbs + (row.carbs * qty),
-        fat: acc.fat + (row.fat * qty),
-        fiber: acc.fiber + (row.fiber * qty)
+        calories: acc.calories + (parseFloat(row.calories) || 0) * qty,
+        protein:  acc.protein  + (parseFloat(row.protein)  || 0) * qty,
+        carbs:    acc.carbs    + (parseFloat(row.carbs)    || 0) * qty,
+        fat:      acc.fat      + (parseFloat(row.fat)      || 0) * qty,
+        fiber:    acc.fiber    + (parseFloat(row.fiber)    || 0) * qty,
       };
     },
     { calories: 0, protein: 0, carbs: 0, fat: 0, fiber: 0 }
   );
 
-  const renderCell = ({ row, column, onRowChange }) => {
-    const value = row[column.key];
-    
-    if (column.editable === false) {
-      return <div className="rdg-cell-value">{value}</div>;
-    }
+  const cellClass = 'border border-gray-200 px-2 py-1';
+  const inputClass = 'w-full h-full bg-transparent outline-none focus:bg-blue-50 px-1 py-1 text-sm';
 
-    return (
+  const EditableCell = ({ rowId, field, value, type = 'text' }) => (
+    <td className={cellClass}>
       <input
-        type="text"
+        type={type}
         value={value}
-        onChange={(e) => onRowChange({ ...row, [column.key]: e.target.value })}
-        onBlur={() => {
-          if (column.key === 'food' && value.trim()) {
-            fetchNutritionData(rows.indexOf(row), value.trim());
-          }
-        }}
-        className="w-full h-full border-none outline-none bg-transparent"
+        className={inputClass}
+        onChange={e => updateCell(rowId, field, e.target.value)}
+        onBlur={field === 'food' ? e => fetchNutritionData(rowId, e.target.value) : undefined}
       />
-    );
-  };
+    </td>
+  );
+
+  const ReadonlyCell = ({ value }) => (
+    <td className={`${cellClass} text-center text-sm text-gray-700`}>
+      {value !== '' && value !== undefined ? value : <span className="text-gray-300">—</span>}
+    </td>
+  );
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Nutrition Log</h2>
-        <div className="space-x-2">
-          <button
-            onClick={addRow}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            Add Row
-          </button>
-          <button
-            onClick={() => setRows(initialRows)}
-            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-          >
-            Reset
-          </button>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50 p-6">
+      <div className="max-w-6xl mx-auto">
 
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
-          {error}
-        </div>
-      )}
-
-      <div className="bg-white rounded-lg shadow">
-        <DataGrid
-          columns={columns}
-          rows={rows}
-          rowKeyGetter={(row) => row.id}
-          onRowsChange={setRows}
-          renderers={{
-            renderCell
-          }}
-          className="rdg-light"
-        />
-      </div>
-
-      <div className="bg-gray-50 p-4 rounded-lg">
-        <h3 className="text-lg font-semibold mb-2">Daily Totals</h3>
-        <div className="grid grid-cols-5 gap-4 text-center">
-          <div>
-            <div className="text-2xl font-bold text-blue-600">{Math.round(totals.calories)}</div>
-            <div className="text-sm text-gray-600">Calories</div>
+        {/* Header */}
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center gap-4">
+            {onBack && (
+              <button onClick={onBack} className="text-gray-500 hover:text-gray-800 text-sm">
+                ← Back
+              </button>
+            )}
+            <h2 className="text-2xl font-bold">Nutrition Log</h2>
           </div>
-          <div>
-            <div className="text-2xl font-bold text-green-600">{totals.protein.toFixed(1)}</div>
-            <div className="text-sm text-gray-600">Protein (g)</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-yellow-600">{totals.carbs.toFixed(1)}</div>
-            <div className="text-sm text-gray-600">Carbs (g)</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-red-600">{totals.fat.toFixed(1)}</div>
-            <div className="text-sm text-gray-600">Fat (g)</div>
-          </div>
-          <div>
-            <div className="text-2xl font-bold text-purple-600">{totals.fiber.toFixed(1)}</div>
-            <div className="text-sm text-gray-600">Fiber (g)</div>
+          <div className="flex gap-2">
+            <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+              + Add Row
+            </button>
+            <button onClick={() => setRows([makeRow()])} className="px-4 py-2 bg-gray-500 text-white text-sm rounded hover:bg-gray-600">
+              Reset
+            </button>
           </div>
         </div>
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+            {error}
+          </div>
+        )}
+        {loading && (
+          <div className="text-sm text-blue-500 mb-3 italic">Fetching nutrition data…</div>
+        )}
+
+        {/* Grid */}
+        <div className="bg-white rounded-lg shadow-lg mb-6 overflow-x-auto">
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">
+                {['Date', 'Food', 'Qty', 'Unit', 'Calories', 'Protein (g)', 'Carbs (g)', 'Fat (g)', 'Fiber (g)', ''].map(h => (
+                  <th key={h} className="border border-gray-200 px-3 py-2">{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(row => (
+                <tr key={row.id} className="hover:bg-gray-50">
+                  <EditableCell rowId={row.id} field="date" value={row.date} type="date" />
+                  <EditableCell rowId={row.id} field="food" value={row.food} />
+                  <EditableCell rowId={row.id} field="qty"  value={row.qty}  type="number" />
+                  <EditableCell rowId={row.id} field="unit" value={row.unit} />
+                  <ReadonlyCell value={row.calories} />
+                  <ReadonlyCell value={row.protein} />
+                  <ReadonlyCell value={row.carbs} />
+                  <ReadonlyCell value={row.fat} />
+                  <ReadonlyCell value={row.fiber} />
+                  <td className={cellClass}>
+                    <button
+                      onClick={() => deleteRow(row.id)}
+                      className="text-red-400 hover:text-red-600 text-xs px-1"
+                      title="Delete row"
+                    >
+                      ✕
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Totals */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h3 className="text-lg font-semibold mb-4">Daily Totals</h3>
+          <div className="grid grid-cols-5 gap-4">
+            {[
+              { label: 'Calories',    value: Math.round(totals.calories), color: 'text-blue-600' },
+              { label: 'Protein (g)', value: totals.protein.toFixed(1),   color: 'text-green-600' },
+              { label: 'Carbs (g)',   value: totals.carbs.toFixed(1),     color: 'text-yellow-600' },
+              { label: 'Fat (g)',     value: totals.fat.toFixed(1),       color: 'text-red-600' },
+              { label: 'Fiber (g)',   value: totals.fiber.toFixed(1),     color: 'text-purple-600' },
+            ].map(({ label, value, color }) => (
+              <div key={label} className="text-center">
+                <div className={`text-2xl font-bold ${color}`}>{value}</div>
+                <div className="text-sm text-gray-600">{label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </div>
   );
