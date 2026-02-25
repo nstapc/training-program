@@ -17,13 +17,11 @@ const WorkoutsPageWrapper = () => {
   const navigate = useNavigate();
   const { workoutKey } = useParams();
   
-  const ModifiedWorkoutsPage = () => {
-    // Check if it's a valid workout key
-    const isValidWorkout = workoutKey && Object.keys(workouts).includes(workoutKey);
-    
-    return <WorkoutsPage onBack={() => navigate('/')} initialWorkout={isValidWorkout ? workoutKey : null} />;
-  };
-  return <ModifiedWorkoutsPage />;
+  // If we have a workoutKey parameter, show that specific workout
+  // If no workoutKey parameter, show the selection page (initialWorkout = null)
+  const initialWorkout = workoutKey && Object.keys(workouts).includes(workoutKey) ? workoutKey : null;
+  
+  return <WorkoutsPage onBack={() => navigate('/')} initialWorkout={initialWorkout} />;
 };
 
 const TrackingPageWrapper = () => {

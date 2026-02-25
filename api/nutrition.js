@@ -1,5 +1,3 @@
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -14,7 +12,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiKey = process.env.USDA_API_KEY || 'DEMO_KEY';
+    // Note: In a real application, you would need to set up proper environment variables
+    // For now, using DEMO_KEY which has limited functionality
+    const apiKey = 'DEMO_KEY'; // process.env.USDA_API_KEY || 'DEMO_KEY';
     const searchUrl = `https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${apiKey}&query=${encodeURIComponent(foodName)}&pageSize=1`;
 
     const searchResponse = await fetch(searchUrl);

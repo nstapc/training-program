@@ -28,7 +28,7 @@ export default function InstallPrompt() {
     deferredPrompt.prompt()
 
     // Wait for the user to respond to the prompt
-    const { outcome } = await deferredPrompt.userChoice
+    await deferredPrompt.userChoice
 
     // Reset the deferred prompt
     setDeferredPrompt(null)

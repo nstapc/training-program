@@ -67,7 +67,7 @@ const FoodSearch = ({ onFoodSelect, existingFoods = [] }) => {
         clearTimeout(searchTimeoutRef.current);
       }
     };
-  }, [searchTerm, apiKey]);
+  }, [searchTerm, apiKey, searchFoods]);
 
   const searchFoods = async (query) => {
     // Cancel any previous request

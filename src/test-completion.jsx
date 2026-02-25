@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import TrackingPage from './components/TrackingPage';

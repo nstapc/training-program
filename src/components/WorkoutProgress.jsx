@@ -33,10 +33,6 @@ const getSupersetPairs = (exercises) => {
   return supersetPairs;
 };
 
-// Helper to check if an exercise is part of a superset
-const isInSuperset = (index, supersetPairs) => {
-  return supersetPairs.some(pair => pair.first === index || pair.second === index);
-};
 
 // Helper to get superset pair for an index
 const getSupersetPair = (index, supersetPairs) => {
@@ -90,8 +86,6 @@ const WorkoutProgress = ({
   }, [exercises, supersetPairs]);
 
   return (
-    <div className="bg-white/90 transition-all shadow-2xl p-6 border border-gray-300">
-      <h3 className="text-xl font-bold mb-4 text-black">Workout Progress</h3>
       <div className="space-y-2">
         {groupedExercises.map((group, groupIdx) => {
           if (group.type === 'superset') {
@@ -295,7 +289,6 @@ const WorkoutProgress = ({
           }
         })}
       </div>
-    </div>
   );
 };
 

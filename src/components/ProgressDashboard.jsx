@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   BarChart, 
   Bar, 
@@ -22,17 +22,11 @@ import {
   BarChart3,
   AlertCircle
 } from 'lucide-react';
-import { getWorkoutHistory, getExerciseTrends, getTrainingFrequency, getWeeklyVolumeSummary, getUserProfile } from '../utils/progressTracker';
+import { getWorkoutHistory, getExerciseTrends, getTrainingFrequency, getWeeklyVolumeSummary } from '../utils/progressTracker';
 
 const ProgressDashboard = ({ onBackToWorkout }) => {
   const [selectedExercise, setSelectedExercise] = useState('');
   const [timeRange, setTimeRange] = useState('30'); // days
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const userProfile = getUserProfile();
-    setProfile(userProfile);
-  }, []);
 
   const history = getWorkoutHistory();
   const frequency = getTrainingFrequency();
@@ -66,7 +60,6 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
       return sum + (sets * reps);
     }, 0);
   }, 0);
-  const avgWorkoutLength = totalWorkouts > 0 ? Math.round(totalVolume / totalWorkouts) : 0;
 
   // Prepare volume chart data
   const volumeChartData = volumeData.map(week => ({
@@ -107,7 +100,7 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
           </div>
           <div className="flex gap-2">
             <button className="flex items-center gap-2 px-4 py-2 bg-white/75 hover:bg-white/100 transition-all transform shadow-2xl text-black">
-              {profile && profile.name ? 'Profile' : 'Sign in'}
+              Sign in
             </button>
           </div>
         </div>

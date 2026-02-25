@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getUserProfile } from '../utils/progressTracker';
 import FoodSearch from './FoodSearch';
 
 const TrackingPage = ({ onBack }) => {
   const [trackingData, setTrackingData] = useState([]);
-  const [profile, setProfile] = useState(null);
   const [activeRow, setActiveRow] = useState(null);
 
-  useEffect(() => {
-    const userProfile = getUserProfile();
-    setProfile(userProfile);
-  }, []);
-
-  const isSignedIn = profile && profile.name;
+  const isSignedIn = false; // Profile functionality removed for now
 
   useEffect(() => {
     // Load tracking data from localStorage
@@ -31,7 +24,10 @@ const TrackingPage = ({ onBack }) => {
         carbs: undefined,
         fats: undefined
       })).sort((a, b) => new Date(b.date) - new Date(a.date));
-      setTrackingData(sortedData);
+      // Use setTimeout to avoid synchronous setState in effect
+      setTimeout(() => {
+        setTrackingData(sortedData);
+      }, 0);
     } else {
       // Initialize with sample data for the last 7 days (newest first)
       const initialData = [];
@@ -47,7 +43,10 @@ const TrackingPage = ({ onBack }) => {
           foods: []
         });
       }
-      setTrackingData(initialData);
+      // Use setTimeout to avoid synchronous setState in effect
+      setTimeout(() => {
+        setTrackingData(initialData);
+      }, 0);
     }
   }, []);
 

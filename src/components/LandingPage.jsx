@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getUserProfile } from '../utils/progressTracker';
+import React from 'react';
 
 const LandingPage = ({ onNavigate }) => {
-  const [profile, setProfile] = useState(null);
-
-  useEffect(() => {
-    const userProfile = getUserProfile();
-    setProfile(userProfile);
-  }, []);
-
-  const isSignedIn = profile && profile.name;
+  const isSignedIn = false; // Profile functionality removed for now
 
   return (
     <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4 flex items-center justify-center">

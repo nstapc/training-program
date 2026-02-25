@@ -55,7 +55,6 @@ export const handleSupersetNavigation = ({
         currentSet,
         completedSets,
         workoutKey,
-        pairedExercise,
         pairedIndex: exercises.indexOf(pairedExercise)
       });
     }
@@ -71,7 +70,6 @@ const handlePairedExerciseNavigation = ({
   currentSet,
   completedSets,
   workoutKey,
-  pairedExercise,
   pairedIndex
 }) => {
   const pairedKey = `${workoutKey}-${pairedIndex}-${currentSet}`;
@@ -220,6 +218,7 @@ export const formatTime = (seconds) => {
  * @throws {Error} - If workout data is invalid
  */
 export const validateWorkoutData = (workout) => {
+  console.log('Validating workout:', workout.name);
   if (!workout || typeof workout !== 'object') {
     throw new Error('Workout must be an object');
   }
@@ -250,6 +249,8 @@ export const validateWorkoutData = (workout) => {
     // Allow 0 rest for exercises in supersets (group contains '1' or '2')
     // but require 30-180 for other exercises
     const isSupersetExercise = exercise.group.includes('1') || exercise.group.includes('2');
+    console.log(`Exercise ${index + 1}: ${exercise.name}, group: ${exercise.group}, isSuperset: ${isSupersetExercise}, rest: ${exercise.rest}`);
+    
     if (!isSupersetExercise && (exercise.rest < REST_TIME_MIN || exercise.rest > REST_TIME_MAX)) {
       throw new Error(`Exercise ${index + 1} rest time must be between ${REST_TIME_MIN}-${REST_TIME_MAX} seconds`);
     }
@@ -286,4 +287,5 @@ export const validateWorkoutData = (workout) => {
       }
     }
   }
+  console.log('Workout validation completed successfully');
 };

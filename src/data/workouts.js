@@ -18,12 +18,12 @@
  */
 
 export const workouts = {
-  workoutA: {
-    name: 'Workout A',
+  push1: {
+    name: 'Push 1',
     description: 'Push (Chest/Shoulders/Triceps) - Heavy Focus',
     exercises: [
       {
-        name: 'DB Bench Press',
+        name: 'Slight Incline DB Bench Press',
         sets: 4,
         reps: '6-8',
         rest: 150,
@@ -32,22 +32,22 @@ export const workouts = {
         equipment: 'Dumbbells + Bench'
       },
       {
-        name: 'DB Overhead Press (Seated)',
-        sets: 3,
-        reps: '8-10',
-        rest: 120,
-        group: 'B',
-        notes: 'Neutral or pronated grip. Full lockout overhead.',
-        equipment: 'Dumbbells + Bench'
-      },
-      {
         name: 'Incline DB Press',
         sets: 3,
         reps: '8-10',
         rest: 120,
-        group: 'C',
+        group: 'B',
         notes: '30-45 deg incline. Targets upper chest. Lengthened position emphasis.',
         equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Overhead Press',
+        sets: 3,
+        reps: '8-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Neutral or pronated grip. Full lockout overhead.',
+        equipment: 'Dumbbells'
       },
       {
         name: 'DB Pull Over',
@@ -72,7 +72,7 @@ export const workouts = {
         sets: 3,
         reps: '12-15',
         rest: 60,
-        group: 'E1',
+        group: 'F1',
         notes: 'Slight forward lean. Raise to shoulder height. Control eccentric.',
         equipment: 'Dumbbells'
       },
@@ -80,8 +80,8 @@ export const workouts = {
         name: 'Band Face Pulls',
         sets: 3,
         reps: '15-20',
-        rest: 0,
-        group: 'E2',
+        rest: 60,
+        group: 'F2',
         notes: 'External rotation at end. Critical for shoulder health. Superset with laterals.',
         equipment: 'Bands'
       },
@@ -90,24 +90,24 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 90,
-        group: 'F',
+        group: 'G1',
         notes: 'Long head emphasis due to shoulder flexion. Deep stretch at bottom.',
         equipment: 'Dumbbells'
       },
       {
-        name: 'Ring Push-ups (Diamond)',
-        sets: 2,
-        reps: '12-15',
-        rest: 60,
-        group: 'G',
-        notes: 'Triceps finisher. Rings increase instability and muscle activation.',
-        equipment: 'Rings'
+        name: 'DB Skull Crushers',
+        sets: 3,
+        reps: '8-10',
+        rest: 90,
+        group: 'G2',
+        notes: 'Heavy triceps compound. Target medial and lateral heads. Full ROM.',
+        equipment: 'Dumbbells + Bench'
       },
     ]
   },
 
-  workoutB: {
-    name: 'Workout B',
+  pull1: {
+    name: 'Pull 1',
     description: 'Pull (Back/Biceps/Rear Delts) - Volume Focus',
     exercises: [
       {
@@ -185,8 +185,8 @@ export const workouts = {
     ]
   },
 
-  workoutC: {
-    name: 'Workout C',
+  legs1: {
+    name: 'Legs 1',
     description: 'Legs (Quads/Hamstrings/Glutes) - Compound Focus',
     exercises: [
       {
@@ -255,8 +255,8 @@ export const workouts = {
     ]
   },
 
-  workoutD: {
-    name: 'Workout D',
+  push2: {
+    name: 'Push 2',
     description: 'Push Variation (Chest/Shoulders/Triceps) - Hypertrophy Focus',
     exercises: [
       {
@@ -343,8 +343,8 @@ export const workouts = {
     ]
   },
 
-  workoutE: {
-    name: 'Workout E',
+  pull2: {
+    name: 'Pull 2',
     description: 'Pull Variation (Back/Biceps/Rear Delts) - Metabolic Focus',
     exercises: [
       {
@@ -422,8 +422,8 @@ export const workouts = {
     ]
   },
 
-  workoutF: {
-    name: 'Workout F',
+  legs2: {
+    name: 'Legs 2',
     description: 'Legs Variation (Posterior Chain/Glutes) - Unilateral Focus',
     exercises: [
       {
@@ -515,7 +515,7 @@ export const workouts = {
         equipment: 'Dumbbells'
       },
       {
-        name: 'DB Bench Press',
+        name: 'Slight Incline DB Bench Press',
         sets: 4,
         reps: '6-8',
         rest: 120,
@@ -790,7 +790,7 @@ export const workouts = {
         equipment: 'Pull-up Attachment'
       },
       {
-        name: 'DB Bench Press',
+        name: 'Slight Incline DB Bench Press',
         sets: 3,
         reps: '8-10',
         rest: 120,
@@ -960,7 +960,7 @@ export const equipmentGuide = {
  */
 export const weeklyVolume = {
   chest: {
-    exercises: ['DB Bench Press', 'Incline DB Press', 'Ring Dips', 'Incline DB Fly', 'Ring Push-ups', 'Ring Flyes', 'Power Twister', 'DB Pull Over'],
+    exercises: ['Slight Incline DB Bench Press', 'Incline DB Press', 'Ring Dips', 'Incline DB Fly', 'Ring Push-ups', 'Ring Flyes', 'Power Twister', 'DB Pull Over'],
     setsPerWeek: 19, // 4+3+3+3+4+4+3 = 24 (adjusted to 19 with pull over inclusion)
     target: { min: 10, optimal: 14, max: 20 }
   },

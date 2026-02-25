@@ -217,7 +217,7 @@ export const calculateProgression = (currentLoad, currentReps, targetReps) => {
  * Volume Tracking Helper
  * Calculate weekly volume per muscle group
  */
-export const calculateWeeklyVolume = (workoutHistory) => {
+export const calculateWeeklyVolume = () => {
   const muscleGroups = {
     chest: 0, back: 0, shoulders: 0, biceps: 0, triceps: 0,
     quads: 0, hamstrings: 0, glutes: 0, calves: 0

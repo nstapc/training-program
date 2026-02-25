@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { workouts } from '../data/workouts';
-import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression, formatTime } from '../utils/workoutUtils';
-import { saveWorkoutToHistory, logExerciseSet, getUserProfile } from '../utils/progressTracker';
-import { playLyreSound, canPlayAudio } from '../utils/audioUtils';
+import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression } from '../utils/workoutUtils';
+import { logExerciseSet } from '../utils/progressTracker';
+import { playLyreSound } from '../utils/audioUtils';
 import WorkoutProgress from './WorkoutProgress';
 
 const WorkoutsPage = ({ onBack, initialWorkout }) => {
@@ -15,28 +15,17 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [completedSets, setCompletedSets] = useState({});
-  const [profile, setProfile] = useState(null);
 
+  const isSignedIn = false; // Profile functionality removed for now
+
+  // Sync state when initialWorkout prop changes (e.g. navigating to a new workout URL)
   useEffect(() => {
-    const userProfile = getUserProfile();
-    setProfile(userProfile);
-  }, []);
-
-  const isSignedIn = profile && profile.name;
+    setSelectedWorkout(initialWorkout || null);
+  }, [initialWorkout]);
 
   const currentWorkout = selectedWorkout ? workouts[selectedWorkout] : null;
   const currentExercise = currentWorkout?.exercises[currentExerciseIndex];
 
-  // Memoize current workout data to avoid unnecessary recalculations
-  const workoutData = useMemo(() => {
-    if (!currentWorkout) return null;
-    return {
-      exercises: currentWorkout.exercises,
-      totalExercises: currentWorkout.exercises.length,
-      name: currentWorkout.name,
-      description: currentWorkout.description
-    };
-  }, [currentWorkout]);
 
   useEffect(() => {
     let interval;
@@ -157,15 +146,19 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
   };
 
   const selectWorkout = (workoutKey) => {
+    console.log('Selecting workout:', workoutKey);
     try {
       validateWorkoutData(workouts[workoutKey]);
+      console.log('Workout validation passed');
       // Use React Router navigate to go to the specific workout URL
       navigate(`/workouts/${workoutKey}`);
+      console.log('Navigation triggered to:', `/workouts/${workoutKey}`);
     } catch (error) {
       console.error('Invalid workout data:', error.message);
       // Could show error to user in a real app
     }
   };
+
 
   const backToMenu = () => {
     setSelectedWorkout(null);
