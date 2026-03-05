@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { workouts } from '../data/workouts';
-import { validateWorkoutData, handleSupersetNavigation, handleNormalProgression } from '../utils/workoutUtils';
+import { validateWorkoutData, handleNormalProgression } from '../utils/workoutUtils';
 import { logExerciseSet } from '../utils/progressTracker';
 import { playLyreSound } from '../utils/audioUtils';
 import WorkoutProgress from './WorkoutProgress';
@@ -65,19 +65,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
     const key = `${selectedWorkout}-${currentExerciseIndex}-${currentSet}`;
     setCompletedSets(prev => ({ ...prev, [key]: true }));
 
-    // Try superset navigation first
-    const supersetResult = handleSupersetNavigation({
-      exercises: currentWorkout.exercises,
-      currentExerciseIndex,
-      currentSet,
-      completedSets,
-      workoutKey: selectedWorkout,
-      fromRest: true
-    });
-
-    if (applyNavigationResult(supersetResult)) return;
-
-    // If not a superset or superset logic didn't handle it, use normal progression
+    // Use normal progression for all exercises
     const normalResult = handleNormalProgression({
       currentExerciseIndex,
       currentSet,
@@ -105,19 +93,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
       `Completed set ${currentSet}`
     );
 
-    // Try superset navigation first
-    const supersetResult = handleSupersetNavigation({
-      exercises: currentWorkout.exercises,
-      currentExerciseIndex,
-      currentSet,
-      completedSets,
-      workoutKey: selectedWorkout,
-      fromRest: false
-    });
-
-    if (applyNavigationResult(supersetResult)) return;
-
-    // If not a superset or superset logic didn't handle it, use normal progression
+    // Use normal progression for all exercises
     const normalResult = handleNormalProgression({
       currentExerciseIndex,
       currentSet,

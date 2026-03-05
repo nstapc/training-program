@@ -72,7 +72,7 @@ export const workouts = {
         sets: 3,
         reps: '12-15',
         rest: 60,
-        group: 'F1',
+        group: 'F',
         notes: 'Slight forward lean. Raise to shoulder height. Control eccentric.',
         equipment: 'Dumbbells'
       },
@@ -81,8 +81,8 @@ export const workouts = {
         sets: 3,
         reps: '15-20',
         rest: 60,
-        group: 'F2',
-        notes: 'External rotation at end. Critical for shoulder health. Superset with laterals.',
+        group: 'G',
+        notes: 'External rotation at end. Critical for shoulder health.',
         equipment: 'Bands'
       },
       {
@@ -90,7 +90,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 90,
-        group: 'G1',
+        group: 'H',
         notes: 'Long head emphasis due to shoulder flexion. Deep stretch at bottom.',
         equipment: 'Dumbbells'
       },
@@ -99,7 +99,7 @@ export const workouts = {
         sets: 3,
         reps: '8-10',
         rest: 90,
-        group: 'G2',
+        group: 'I',
         notes: 'Heavy triceps compound. Target medial and lateral heads. Full ROM.',
         equipment: 'Dumbbells + Bench'
       },
@@ -142,7 +142,7 @@ export const workouts = {
         sets: 3,
         reps: '15-20',
         rest: 60,
-        group: 'D1',
+        group: 'D',
         notes: 'External rotation at end. Rear delt and rotator cuff emphasis.',
         equipment: 'Rings'
       },
@@ -150,9 +150,9 @@ export const workouts = {
         name: 'DB Rear Delt Fly (Incline)',
         sets: 3,
         reps: '12-15',
-        rest: 0,
-        group: 'D2',
-        notes: 'Chest on incline bench. Eliminates momentum. Superset with face pulls.',
+        rest: 60,
+        group: 'E',
+        notes: 'Chest on incline bench. Eliminates momentum.',
         equipment: 'Dumbbells + Bench'
       },
       {
@@ -160,7 +160,7 @@ export const workouts = {
         sets: 3,
         reps: '8-10',
         rest: 90,
-        group: 'E',
+        group: 'F',
         notes: 'Supinate at top. No swinging. Control the negative.',
         equipment: 'Dumbbells'
       },
@@ -169,7 +169,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 60,
-        group: 'F',
+        group: 'G',
         notes: 'Brachialis and brachioradialis emphasis. Neutral grip throughout.',
         equipment: 'Dumbbells'
       },
@@ -221,7 +221,7 @@ export const workouts = {
         sets: 3,
         reps: '12-15',
         rest: 60,
-        group: 'D1',
+        group: 'D',
         notes: 'Rectus femoris isolation. Pause at top contraction.',
         equipment: 'Bench Leg Attachment'
       },
@@ -229,9 +229,9 @@ export const workouts = {
         name: 'Leg Curl (Attachment)',
         sets: 3,
         reps: '12-15',
-        rest: 0,
-        group: 'D2',
-        notes: 'Hamstring isolation. Superset with extensions. Control eccentric.',
+        rest: 60,
+        group: 'E',
+        notes: 'Hamstring isolation. Control eccentric.',
         equipment: 'Bench Leg Attachment'
       },
       {
@@ -239,7 +239,7 @@ export const workouts = {
         sets: 4,
         reps: '15-20',
         rest: 60,
-        group: 'E',
+        group: 'F',
         notes: 'Full stretch at bottom, full contraction at top. One leg at a time.',
         equipment: 'Dumbbells'
       },
@@ -248,7 +248,7 @@ export const workouts = {
         sets: 3,
         reps: '45-60s',
         rest: 60,
-        group: 'F',
+        group: 'G',
         notes: 'Core stability. Posterior pelvic tilt. Squeeze glutes.',
         equipment: 'Bodyweight'
       },
@@ -257,88 +257,70 @@ export const workouts = {
 
   push2: {
     name: 'Push 2',
-    description: 'Push Variation (Chest/Shoulders/Triceps) - Hypertrophy Focus',
+    description: 'Push (Shoulders/Triceps) - Vertical Push Focus',
     exercises: [
       {
-        name: 'Incline DB Fly',
+        name: 'DB Overhead Press (Standing)',
         sets: 4,
+        reps: '6-8',
+        rest: 150,
+        group: 'A',
+        notes: 'Primary vertical press. Standing engages core. Heavy focus for strength.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Arnold Press',
+        sets: 3,
+        reps: '8-10',
+        rest: 120,
+        group: 'B',
+        notes: 'Rotation through movement. Hits all delt heads.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'Butterfly Raises',
+        sets: 3,
+        reps: '12-15',
+        rest: 90,
+        group: 'C',
+        notes: 'Shoulder isolation with unique resistance curve. Control eccentric.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Bent Lateral Raises',
+        sets: 3,
+        reps: '12-15',
+        rest: 60,
+        group: 'D',
+        notes: 'Rear delt isolation. Bend at hips, raise arms to sides.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Overhead Triceps Extension',
+        sets: 3,
         reps: '10-12',
         rest: 90,
-        group: 'A',
-        notes: 'Deep stretch at bottom - lengthened partials for hypertrophy. Schoenfeld 2023 research.',
+        group: 'E',
+        notes: 'Long head emphasis due to shoulder flexion. Deep stretch at bottom.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Skull Crushers',
+        sets: 3,
+        reps: '8-10',
+        rest: 90,
+        group: 'F',
+        notes: 'Heavy triceps compound. Target medial and lateral heads. Full ROM.',
         equipment: 'Dumbbells + Bench'
       },
       {
         name: 'DB Pull Over',
         sets: 3,
-        reps: '12-15',
-        rest: 90,
-        group: 'B',
-        notes: 'High volume for chest and lat hypertrophy. Constant tension throughout ROM.',
-        equipment: 'Dumbbells + Bench'
-      },
-      {
-        name: 'Ring Push-ups',
-        sets: 4,
-        reps: '10-15',
-        rest: 90,
-        group: 'C',
-        notes: 'Turn rings out at top. Instability increases pec and core activation.',
-        equipment: 'Rings'
-      },
-      {
-        name: 'DB Arnold Press',
-        sets: 3,
         reps: '10-12',
         rest: 90,
-        group: 'C',
-        notes: 'Rotation through movement. Hits all delt heads.',
-        equipment: 'Dumbbells + Bench'
-      },
-      {
-        name: 'Band Lateral Raises',
-        sets: 3,
-        reps: '15-20',
-        rest: 60,
-        group: 'D1',
-        notes: 'Constant tension throughout ROM. Different resistance curve than DBs.',
-        equipment: 'Bands'
-      },
-      {
-        name: 'DB Front Raise',
-        sets: 3,
-        reps: '12-15',
-        rest: 0,
-        group: 'D2',
-        notes: 'Anterior delt. Alternate arms or together. Superset with laterals.',
-        equipment: 'Dumbbells'
-      },
-      {
-        name: 'Ring Flyes',
-        sets: 3,
-        reps: '8-12',
-        rest: 90,
-        group: 'E',
-        notes: 'Excellent stretch-mediated hypertrophy. Start with feet forward to reduce difficulty.',
-        equipment: 'Rings'
-      },
-      {
-        name: 'DB Skull Crusher',
-        sets: 3,
-        reps: '10-12',
-        rest: 60,
-        group: 'F',
-        notes: 'Lower to forehead/behind head. Long head emphasis.',
-        equipment: 'Dumbbells + Bench'
-      },
-      {
-        name: 'Power Twister - Chest Squeeze',
-        sets: 2,
-        reps: '12-15',
-        rest: 60,
         group: 'G',
-        notes: 'Isometric/concentric chest work. Hold at peak contraction.',
-        equipment: 'Power Twister'
+        notes: 'Target chest, lats, and serratus. Deep stretch at bottom. Critical for hypertrophy.',
+        equipment: 'Dumbbells + Bench'
       },
     ]
   },
@@ -582,7 +564,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 60,
-        group: 'H1',
+        group: 'H',
         notes: 'Bicep/brachialis compound. Neutral grip.',
         equipment: 'Dumbbells'
       },
@@ -590,9 +572,9 @@ export const workouts = {
         name: 'DB Overhead Triceps Extension',
         sets: 3,
         reps: '10-12',
-        rest: 0,
-        group: 'H2',
-        notes: 'Tricep compound. Long head emphasis. Superset with curls.',
+        rest: 90,
+        group: 'I',
+        notes: 'Tricep compound. Long head emphasis. Deep stretch at bottom.',
         equipment: 'Dumbbells'
       },
       {
@@ -600,7 +582,7 @@ export const workouts = {
         sets: 3,
         reps: '12-15',
         rest: 60,
-        group: 'I',
+        group: 'J',
         notes: 'Shoulder isolation. Control eccentric.',
         equipment: 'Dumbbells'
       },
@@ -609,7 +591,7 @@ export const workouts = {
         sets: 3,
         reps: '15-20',
         rest: 60,
-        group: 'J',
+        group: 'K',
         notes: 'Rear delt/rotator cuff. Critical for shoulder health.',
         equipment: 'Bands'
       },
@@ -618,7 +600,7 @@ export const workouts = {
         sets: 4,
         reps: '15-20',
         rest: 60,
-        group: 'K',
+        group: 'L',
         notes: 'Calf isolation. Unilateral for balance.',
         equipment: 'Dumbbells'
       },
@@ -627,7 +609,7 @@ export const workouts = {
         sets: 3,
         reps: '60s',
         rest: 60,
-        group: 'L',
+        group: 'M',
         notes: 'Core stability. Full body tension.',
         equipment: 'Bodyweight'
       }
@@ -714,8 +696,8 @@ export const workouts = {
         name: 'DB Preacher Curl',
         sets: 3,
         reps: '10-12',
-        rest: 60,
-        group: 'H1',
+        rest: 90,
+        group: 'H',
         notes: 'Bicep isolation. Eliminates cheating. Excellent for peak.',
         equipment: 'Dumbbells + Preacher Attachment'
       },
@@ -723,9 +705,9 @@ export const workouts = {
         name: 'DB Skull Crusher',
         sets: 3,
         reps: '10-12',
-        rest: 0,
-        group: 'H2',
-        notes: 'Tricep isolation. Long head emphasis. Superset with curls.',
+        rest: 90,
+        group: 'I',
+        notes: 'Tricep isolation. Long head emphasis. Full ROM for maximum stretch.',
         equipment: 'Dumbbells + Bench'
       },
       {
@@ -733,7 +715,7 @@ export const workouts = {
         sets: 3,
         reps: '15-20',
         rest: 60,
-        group: 'I',
+        group: 'J',
         notes: 'Shoulder isolation. Constant tension throughout ROM.',
         equipment: 'Bands'
       },
@@ -742,7 +724,7 @@ export const workouts = {
         sets: 3,
         reps: '15-20',
         rest: 60,
-        group: 'J',
+        group: 'K',
         notes: 'Rear delt/rotator cuff. Critical for shoulder health and posture.',
         equipment: 'Rings'
       },
@@ -751,7 +733,7 @@ export const workouts = {
         sets: 4,
         reps: '15-20',
         rest: 60,
-        group: 'K',
+        group: 'L',
         notes: 'Calf isolation. Targets soleus. Pause at stretch and contraction.',
         equipment: 'Dumbbells'
       },
@@ -760,7 +742,7 @@ export const workouts = {
         sets: 3,
         reps: '10-15',
         rest: 60,
-        group: 'L',
+        group: 'M',
         notes: 'Core and hip flexors. Control the swing. Bent knee to make easier.',
         equipment: 'Pull-up Attachment'
       }
@@ -848,7 +830,7 @@ export const workouts = {
         sets: 3,
         reps: '12-15',
         rest: 60,
-        group: 'H1',
+        group: 'H',
         notes: 'Shoulder isolation. Control eccentric for maximum muscle damage.',
         equipment: 'Dumbbells'
       },
@@ -856,9 +838,9 @@ export const workouts = {
         name: 'Band Face Pulls',
         sets: 3,
         reps: '15-20',
-        rest: 0,
-        group: 'H2',
-        notes: 'Rear delt/rotator cuff. Critical for shoulder health. Superset with laterals.',
+        rest: 60,
+        group: 'I',
+        notes: 'Rear delt/rotator cuff. Critical for shoulder health.',
         equipment: 'Bands'
       },
       {
@@ -866,7 +848,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 60,
-        group: 'I',
+        group: 'J',
         notes: 'Bicep/brachialis compound. Neutral grip for balanced arm development.',
         equipment: 'Dumbbells'
       },
@@ -875,7 +857,7 @@ export const workouts = {
         sets: 3,
         reps: '10-12',
         rest: 60,
-        group: 'J',
+        group: 'K',
         notes: 'Tricep compound. Long head emphasis. Full ROM for maximum stretch.',
         equipment: 'Dumbbells'
       },
@@ -884,7 +866,7 @@ export const workouts = {
         sets: 4,
         reps: '15-20',
         rest: 60,
-        group: 'K',
+        group: 'L',
         notes: 'Calf isolation. Unilateral for balance. Pause at contraction.',
         equipment: 'Dumbbells'
       },
@@ -893,7 +875,7 @@ export const workouts = {
         sets: 3,
         reps: '60s',
         rest: 60,
-        group: 'L',
+        group: 'M',
         notes: 'Core stability. Full body tension. Posterior pelvic tilt.',
         equipment: 'Bodyweight'
       }

@@ -4,19 +4,10 @@ import WorkoutProgress from './WorkoutProgress';
 
 describe('WorkoutProgress Component', () => {
   const mockExercises = [
-    { name: 'Exercise 1', sets: 3, reps: '8-10', rest: 60, group: 'A1' },
-    { name: 'Exercise 2', sets: 3, reps: '8-10', rest: 60, group: 'A2' },
-    { name: 'Exercise 3', sets: 4, reps: '10-12', rest: 90, group: 'B' }
+    { name: 'Exercise 1', sets: 3, reps: '8-10', rest: 60, group: 'A' },
+    { name: 'Exercise 2', sets: 3, reps: '8-10', rest: 60, group: 'B' },
+    { name: 'Exercise 3', sets: 4, reps: '10-12', rest: 90, group: 'C' }
   ];
-
-  const mockColors = {
-    card: 'bg-slate-800 border-slate-700',
-    listActive: 'bg-blue-600',
-    listInactive: 'bg-slate-700 hover:bg-slate-600',
-    text: 'text-blue-400',
-    textLight: 'text-slate-400',
-    dotInactive: 'bg-slate-600'
-  };
 
   const mockCompletedSets = {
     'workout-0-1': true,
@@ -28,7 +19,6 @@ describe('WorkoutProgress Component', () => {
     exercises: mockExercises,
     currentExerciseIndex: 0,
     completedSets: mockCompletedSets,
-    colors: mockColors,
     skipToExercise: jest.fn(),
     skipToSet: jest.fn(),
     isSetCompleted: (exerciseIdx, setNum) => !!mockCompletedSets[`workout-${exerciseIdx}-${setNum}`],
@@ -42,7 +32,6 @@ describe('WorkoutProgress Component', () => {
   test('renders workout progress component with exercises', () => {
     render(<WorkoutProgress {...mockProps} />);
 
-    expect(screen.getByText('Workout Progress')).toBeInTheDocument();
     expect(screen.getByText('Exercise 1')).toBeInTheDocument();
     expect(screen.getByText('Exercise 2')).toBeInTheDocument();
     expect(screen.getByText('Exercise 3')).toBeInTheDocument();
@@ -52,32 +41,30 @@ describe('WorkoutProgress Component', () => {
     render(<WorkoutProgress {...mockProps} />);
 
     // Check exercise details are displayed correctly
-    // With supersets rendered as boxed groups
-    const exerciseDetails = screen.getAllByText(/x/);
-    expect(exerciseDetails.length).toBeGreaterThanOrEqual(3); // At least 3 exercise detail lines
+    expect(screen.getAllByText('3 x 8-10 | 60s rest')).toHaveLength(2); // Exercise 1 and 2
     expect(screen.getByText('4 x 10-12 | 90s rest')).toBeInTheDocument();
   });
 
   test('highlights current exercise', () => {
     render(<WorkoutProgress {...mockProps} />);
 
-    // First exercise (in superset) should have active styling inside the box
+    // First exercise should have active styling
     const firstExercise = screen.getByText('Exercise 1').closest('.p-4');
     expect(firstExercise).toHaveClass('bg-white');
+    expect(firstExercise).toHaveClass('shadow-3xl');
+    expect(firstExercise).toHaveClass('border-yellow-500');
     expect(firstExercise).toHaveClass('transition-all');
-    // In superset box, it has border-b instead of shadow-3xl
-    expect(firstExercise).toHaveClass('border-b');
-    expect(firstExercise).not.toHaveClass('ring-2');
-    expect(firstExercise).not.toHaveClass('ring-black');
   });
 
-  test('non-clickable elements do not have hover background', () => {
+  test('non-current exercises have hover styling', () => {
     render(<WorkoutProgress {...mockProps} />);
 
-    // The main container should not have hover background
-    const container = screen.getByText('Workout Progress').closest('div');
-    expect(container).toHaveClass('bg-white/90');
-    expect(container).not.toHaveClass('hover:bg-white/100');
+    // Second exercise should have hover styling
+    const secondExercise = screen.getByText('Exercise 2').closest('.p-4');
+    expect(secondExercise).toHaveClass('bg-white/90');
+    expect(secondExercise).toHaveClass('hover:bg-white/100');
+    expect(secondExercise).toHaveClass('transform');
+    expect(secondExercise).toHaveClass('shadow-2xl');
   });
 
   test('shows completed sets correctly', () => {
@@ -88,7 +75,8 @@ describe('WorkoutProgress Component', () => {
     expect(completedButtons[0]).toHaveClass('bg-green-600'); // Set 1 of Exercise 1
     expect(completedButtons[1]).toHaveClass('bg-green-600'); // Set 2 of Exercise 1
     expect(completedButtons[2]).toHaveClass('bg-white/90'); // Set 3 of Exercise 1 (not completed)
-    expect(completedButtons[0]).not.toHaveClass('rounded');
+    expect(completedButtons[0]).toHaveClass('px-2');
+    expect(completedButtons[0]).toHaveClass('py-1');
     expect(completedButtons[0]).toHaveClass('border');
   });
 
