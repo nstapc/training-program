@@ -2,15 +2,24 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
+import WorkoutsCategoryPage from './components/WorkoutsCategoryPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
 import NutritionGrid from './components/NutritionGrid';
 import InstallPrompt from './components/InstallPrompt';
+import PushPullLegsPage from './components/PushPullLegsPage';
+import FullBodyPage from './components/FullBodyPage';
+import UpperLowerPage from './components/UpperLowerPage';
 import { workouts } from './data/workouts';
 
 const LandingPageWrapper = () => {
   const navigate = useNavigate();
   return <LandingPage onNavigate={navigate} />;
+};
+
+const WorkoutsCategoryPageWrapper = () => {
+  const navigate = useNavigate();
+  return <WorkoutsCategoryPage onBack={() => navigate('/')} />;
 };
 
 const WorkoutsPageWrapper = () => {
@@ -22,6 +31,21 @@ const WorkoutsPageWrapper = () => {
   const initialWorkout = workoutKey && Object.keys(workouts).includes(workoutKey) ? workoutKey : null;
   
   return <WorkoutsPage onBack={() => navigate('/')} initialWorkout={initialWorkout} />;
+};
+
+const PushPullLegsPageWrapper = () => {
+  const navigate = useNavigate();
+  return <PushPullLegsPage onBack={() => navigate('/workouts')} />;
+};
+
+const FullBodyPageWrapper = () => {
+  const navigate = useNavigate();
+  return <FullBodyPage onBack={() => navigate('/workouts')} />;
+};
+
+const UpperLowerPageWrapper = () => {
+  const navigate = useNavigate();
+  return <UpperLowerPage onBack={() => navigate('/workouts')} />;
 };
 
 const TrackingPageWrapper = () => {
@@ -44,7 +68,10 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPageWrapper />} />
-        <Route path="/workouts" element={<WorkoutsPageWrapper />} />
+        <Route path="/workouts" element={<WorkoutsCategoryPageWrapper />} />
+        <Route path="/workouts/push-pull-legs" element={<PushPullLegsPageWrapper />} />
+        <Route path="/workouts/full-body" element={<FullBodyPageWrapper />} />
+        <Route path="/workouts/upper-lower" element={<UpperLowerPageWrapper />} />
         <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
         <Route path="/tracking" element={<TrackingPageWrapper />} />
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />

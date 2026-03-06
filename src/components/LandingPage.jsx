@@ -23,7 +23,7 @@ const LandingPage = ({ onNavigate }) => {
             aria-label="Go to workouts"
           >
             <h2 className="text-2xl font-bold mb-2 text-black">Workouts</h2>
-            <p className="text-sm text-black">Choose from a variety of workout routines and track your progress</p>
+            <p className="text-sm text-black">Choose from Push Pull Legs or Full Body training splits</p>
           </button>
 
           <button

@@ -483,6 +483,164 @@ export const workouts = {
     ]
   },
 
+  upper1: {
+    name: 'Upper Body',
+    description: 'Upper Body (Chest/Back/Shoulders/Arms) - Compound & Accessory Focus',
+    exercises: [
+      {
+        name: 'Slight Incline DB Bench Press',
+        sets: 4,
+        reps: '6-8',
+        rest: 180,
+        group: 'A',
+        notes: 'Primary horizontal push. Greater ROM than barbell, superior pec stretch. Control the descent.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Row (Chest Supported)',
+        sets: 4,
+        reps: '6-8',
+        rest: 180,
+        group: 'A',
+        notes: 'Primary horizontal pull. Incline bench support removes momentum. Full stretch at bottom.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Flye / Incline DB Press',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'B',
+        notes: 'Chest isolation/accessory. Alternate between flye and incline press each session.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Pullover / Pull-ups',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'B',
+        notes: 'Lat accessory. Alternate between pullover and pull-ups each session for variety.',
+        equipment: 'Dumbbells + Bench / Pull-up Attachment'
+      },
+      {
+        name: 'DB Lateral Raise',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Medial delt isolation. Slight forward lean. Raise to shoulder height. Control eccentric.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Rear Delt Fly',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Rear delt isolation. Chest on incline bench eliminates momentum. Full ROM.',
+        equipment: 'Dumbbells + Bench'
+      },
+      {
+        name: 'DB Curl (Biceps)',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'D',
+        notes: 'Bicep isolation. Supinate at top. No swinging. Control the negative.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Skull Crushers (Triceps)',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'D',
+        notes: 'Tricep isolation. Target medial and lateral heads. Full ROM. Control descent.',
+        equipment: 'Dumbbells + Bench'
+      },
+    ]
+  },
+
+  lower1: {
+    name: 'Lower Body',
+    description: 'Lower Body (Quads/Hamstrings/Glutes/Calves) - Compound & Accessory Focus',
+    exercises: [
+      {
+        name: 'DB Goblet Squat',
+        sets: 4,
+        reps: '6-8',
+        rest: 180,
+        group: 'A',
+        notes: 'Primary quad/glute compound. Heels elevated if needed. Deep ROM. Full squat for maximum stimulus.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Romanian Deadlift',
+        sets: 4,
+        reps: '6-8',
+        rest: 180,
+        group: 'A',
+        notes: 'Primary hamstring/glute compound. Hinge at hips. Feel hamstring stretch. Critical for posterior chain.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Leg Extension / Bulgarian Split Squat',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'B',
+        notes: 'Quad accessory. Alternate between leg extension and split squat each session.',
+        equipment: 'Bench Leg Attachment / Dumbbells + Bench'
+      },
+      {
+        name: 'Leg Curl',
+        sets: 3,
+        reps: '10-12',
+        rest: 90,
+        group: 'B',
+        notes: 'Hamstring isolation. Control eccentric (3-4 seconds). Pause at peak contraction.',
+        equipment: 'Bench Leg Attachment'
+      },
+      {
+        name: 'DB Calf Raise (Single Leg)',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Standing calf. Full stretch at bottom, full contraction at top. One leg at a time.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'DB Seated Calf Raise',
+        sets: 4,
+        reps: '8-10',
+        rest: 120,
+        group: 'C',
+        notes: 'Seated calf targets soleus. DB on knees. Pause at stretch and contraction.',
+        equipment: 'Dumbbells'
+      },
+      {
+        name: 'Plank / Core Work',
+        sets: 3,
+        reps: '45-60s',
+        rest: 60,
+        group: 'D',
+        notes: 'Core stability. Posterior pelvic tilt. Squeeze glutes. Whatever volume is needed.',
+        equipment: 'Bodyweight'
+      },
+      {
+        name: 'Low Back / Hyperextension',
+        sets: 3,
+        reps: '12-15',
+        rest: 60,
+        group: 'D',
+        notes: 'Lower back strength and stability. Hold at top for 1-2 seconds. Control descent.',
+        equipment: 'Bodyweight / Dumbbells'
+      },
+    ]
+  },
+
   workoutCatchupA: {
     name: 'Catch-up Workout A',
     description: 'Full Body - All Muscle Groups Stimulation',
