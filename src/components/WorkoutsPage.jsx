@@ -20,8 +20,10 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
 
   // Sync state when initialWorkout prop changes (e.g. navigating to a new workout URL)
   useEffect(() => {
-    setSelectedWorkout(initialWorkout || null);
-  }, [initialWorkout]);
+    if (initialWorkout && initialWorkout !== selectedWorkout) {
+      setSelectedWorkout(initialWorkout);
+    }
+  }, [initialWorkout, selectedWorkout]);
 
   const currentWorkout = selectedWorkout ? workouts[selectedWorkout] : null;
   const currentExercise = currentWorkout?.exercises[currentExerciseIndex];

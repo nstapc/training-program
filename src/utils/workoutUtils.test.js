@@ -3,11 +3,10 @@
  * Tests data structure, validation, and business logic
  */
 import { workouts } from '../data/workouts';
-import { validateWorkoutData } from './workoutUtils';
 
 describe('Workout Data Structure', () => {
-  test('should have nine workout programs', () => {
-    expect(Object.keys(workouts).length).toBe(9);
+  test('should have eleven workout programs', () => {
+    expect(Object.keys(workouts).length).toBe(11);
   });
 
   test('each workout should have required properties', () => {
