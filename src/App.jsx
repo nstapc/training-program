@@ -5,6 +5,7 @@ import WorkoutsPage from './components/WorkoutsPage';
 import WorkoutsCategoryPage from './components/WorkoutsCategoryPage';
 import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
+import EnhancedProgressDashboard from './components/EnhancedProgressDashboard';
 import NutritionGrid from './components/NutritionGrid';
 import InstallPrompt from './components/InstallPrompt';
 import PushPullLegsPage from './components/PushPullLegsPage';
@@ -55,7 +56,7 @@ const TrackingPageWrapper = () => {
 
 const ProgressDashboardWrapper = () => {
   const navigate = useNavigate();
-  return <ProgressDashboard onBackToWorkout={() => navigate('/')} />;
+  return <EnhancedProgressDashboard onBackToWorkout={() => navigate('/')} />;
 };
 
 const NutritionGridWrapper = () => {

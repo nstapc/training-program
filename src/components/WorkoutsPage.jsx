@@ -4,7 +4,16 @@ import { workouts } from '../data/workouts';
 import { validateWorkoutData, handleNormalProgression } from '../utils/workoutUtils';
 import { logExerciseSet } from '../utils/progressTracker';
 import { playLyreSound } from '../utils/audioUtils';
-import WorkoutProgress from './WorkoutProgress';
+import { 
+  getActiveSession, 
+  startSession, 
+  getExerciseCompletion,
+  updateRestTimer,
+  completeSession,
+  isSetCompleted
+} from '../utils/workoutSessionManager';
+import { logEnhancedExerciseSet } from '../utils/enhancedProgressTracker';
+import SmartWorkoutInterface from './SmartWorkoutInterface';
 
 const WorkoutsPage = ({ onBack, initialWorkout }) => {
   const navigate = useNavigate();
@@ -217,18 +226,30 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
         <h1 className="text-3xl font-bold text-center mb-2 text-black">{currentWorkout.name}</h1>
         <p className="text-center text-black mb-8">{currentWorkout.description}</p>
 
-        <WorkoutProgress
+        <SmartWorkoutInterface
           exercises={currentWorkout.exercises}
           currentExerciseIndex={currentExerciseIndex}
-          completedSets={completedSets}
-          skipToExercise={skipToExercise}
-          skipToSet={skipToSet}
-          isSetCompleted={isSetCompleted}
+          currentSet={currentSet}
           isResting={isResting}
           timeLeft={timeLeft}
-          currentSet={currentSet}
-          completeSet={completeSet}
-          completeSetFromRest={completeSetFromRest}
+          isTimerRunning={isTimerRunning}
+          onSkipToExercise={skipToExercise}
+          onSkipToSet={skipToSet}
+          onCompleteSet={completeSet}
+          onCompleteSetFromRest={completeSetFromRest}
+          onAutoAdvance={() => {
+            // Auto-advance logic using the existing progression system
+            const normalResult = handleNormalProgression({
+              currentExerciseIndex,
+              currentSet,
+              totalExercises: currentWorkout.exercises.length,
+              exerciseSets: currentExercise.sets,
+              restTime: currentExercise.rest,
+              fromRest: false
+            });
+            applyNavigationResult(normalResult);
+          }}
+          autoAdvanceEnabled={true}
         />
       </div>
     </div>
