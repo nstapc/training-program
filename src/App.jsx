@@ -7,7 +7,6 @@ import TrackingPage from './components/TrackingPage';
 import ProgressDashboard from './components/ProgressDashboard';
 import EnhancedProgressDashboard from './components/EnhancedProgressDashboard';
 import NutritionGrid from './components/NutritionGrid';
-import InstallPrompt from './components/InstallPrompt';
 import PushPullLegsPage from './components/PushPullLegsPage';
 import FullBodyPage from './components/FullBodyPage';
 import UpperLowerPage from './components/UpperLowerPage';
@@ -78,7 +77,6 @@ const App = () => {
         <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
         <Route path="/nutrition" element={<NutritionGridWrapper />} />
       </Routes>
-      <InstallPrompt />
     </Router>
   );
 };

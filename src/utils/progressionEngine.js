@@ -3,7 +3,7 @@
  * Implements evidence-based progression algorithms for strength training
  */
 
-import { getExerciseHistory, getProgressionData, calculateProgressionSuggestion } from './enhancedProgressTracker';
+import { getExerciseHistory, getProgressionData } from './enhancedProgressTracker';
 
 // Constants for progression logic
 const PROGRESSION_CONFIG = {

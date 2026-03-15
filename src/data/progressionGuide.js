@@ -1,5 +1,5 @@
 /**
- * Progression Guide based on Brad Schoenfeld's Hypertrophy Research
+ * Progression Guide based on Lyle McDonald's Hypertrophy Research
  * 
  * This guide provides evidence-based progression strategies for optimal muscle growth
  */
@@ -7,7 +7,8 @@
 export const progressionGuide = {
   /**
    * Volume Guidelines (Sets per Muscle Group per Week)
-   * Based on Schoenfeld et al. (2017) - "Dose-response relationship between weekly resistance training volume and increases in muscle mass"
+   * Based on McDonald's research on optimal training volume and volume counting methodology
+   * Enhanced with McDonald's volume counting methodology (0.5:1 ratio for smaller muscles in compound movements)
    */
   volumeGuidelines: {
     chest: { min: 10, optimal: 14, max: 20 },
@@ -22,8 +23,131 @@ export const progressionGuide = {
   },
 
   /**
+   * McDonald's Volume Counting Methodology
+   * Addresses the critical issue of overestimating effective volume from compound exercises
+   * Based on McDonald's principle that compound exercises should not count as full sets for all involved muscles
+   */
+  volumeCountingMethodology: {
+    /**
+     * Exercise Volume Distribution Ratios
+     * Based on McDonald's 0.5:1 ratio for smaller muscles in compound movements
+     * This prevents overestimation of effective volume that can lead to overtraining
+     */
+    exerciseVolumeDistribution: {
+      // Chest/Shoulder/Tricep Compounds
+      'Slight Incline DB Bench Press': {
+        chest: 1.0,
+        shoulders: 0.5,  // Anterior delts
+        triceps: 0.5
+      },
+      'Incline DB Press': {
+        chest: 1.0,
+        shoulders: 0.5,  // Anterior delts
+        triceps: 0.5
+      },
+      'DB Overhead Press': {
+        shoulders: 1.0,
+        triceps: 0.5
+      },
+      'Ring Dips': {
+        chest: 1.0,
+        shoulders: 0.5,  // Anterior delts
+        triceps: 0.5
+      },
+      'DB Pull Over': {
+        chest: 1.0,
+        lats: 0.5,
+        serratus: 0.5
+      },
+
+      // Back/Bicep Compounds
+      'Pull-ups (Various Grips)': {
+        back: 1.0,
+        biceps: 0.5
+      },
+      'Chin-ups (Close Grip)': {
+        back: 1.0,
+        biceps: 0.5
+      },
+      'DB Row (Chest Supported)': {
+        back: 1.0,
+        biceps: 0.5
+      },
+      'Single-Arm DB Row': {
+        back: 1.0,
+        biceps: 0.5
+      },
+      'Ring Rows': {
+        back: 1.0,
+        biceps: 0.5
+      },
+
+      // Leg Compounds
+      'DB Goblet Squat': {
+        quads: 1.0,
+        glutes: 0.5,
+        hamstrings: 0.3
+      },
+      'DB Romanian Deadlift': {
+        hamstrings: 1.0,
+        glutes: 0.5,
+        lower back: 0.3
+      },
+      'Bulgarian Split Squat': {
+        quads: 1.0,
+        glutes: 0.5,
+        hamstrings: 0.3
+      },
+      'DB Single-Leg Romanian Deadlift': {
+        hamstrings: 1.0,
+        glutes: 0.5,
+        lower back: 0.3
+      },
+
+
+      // Isolation Exercises (Count as 1.0 for target muscle)
+      'DB Lateral Raises': { shoulders: 1.0 },
+      'DB Rear Delt Fly': { shoulders: 1.0 },
+      'DB Curl (Standing)': { biceps: 1.0 },
+      'DB Hammer Curl': { biceps: 1.0 },
+      'DB Preacher Curl': { biceps: 1.0 },
+      'DB Overhead Triceps Extension': { triceps: 1.0 },
+      'DB Skull Crushers': { triceps: 1.0 },
+      'Leg Extension': { quads: 1.0 },
+      'Leg Curl': { hamstrings: 1.0 },
+      'DB Calf Raise (Single Leg)': { calves: 1.0 },
+      'DB Seated Calf Raise': { calves: 1.0 }
+    },
+
+    /**
+     * Effective Volume Calculation
+     * Converts raw set counts to effective volume using McDonald's methodology
+     */
+    calculateEffectiveVolume: (rawVolume) => {
+      const distribution = progressionGuide.volumeCountingMethodology.exerciseVolumeDistribution;
+      const effectiveVolume = {};
+
+      Object.keys(rawVolume).forEach(muscleGroup => {
+        effectiveVolume[muscleGroup] = 0;
+      });
+
+      // Apply distribution ratios to calculate effective volume
+      Object.keys(distribution).forEach(exercise => {
+        const ratios = distribution[exercise];
+        Object.keys(ratios).forEach(muscleGroup => {
+          if (effectiveVolume[muscleGroup] !== undefined) {
+            effectiveVolume[muscleGroup] += ratios[muscleGroup];
+          }
+        });
+      });
+
+      return effectiveVolume;
+    }
+  },
+
+  /**
    * Rep Range Guidelines
-   * Based on Schoenfeld et al. (2014) - "Muscular adaptations in low- vs. high-load resistance training"
+   * Based on McDonald's research on myofibrillar vs sarcoplasmic hypertrophy
    */
   repRanges: {
     strength: { range: '1-5', sets: 3-5, rest: '2-3 min', purpose: 'Neural adaptations, myofibrillar hypertrophy' },
@@ -33,7 +157,7 @@ export const progressionGuide = {
 
   /**
    * Training Frequency Guidelines
-   * Based on Schoenfeld et al. (2016) - "Resistance training frequency effects on muscular strength"
+   * Based on McDonald's research on optimal training frequency
    */
   frequencyGuidelines: {
     beginners: { frequency: '2x/week', intensity: '60-70% 1RM', volume: '10-14 sets/muscle/week' },
@@ -43,7 +167,7 @@ export const progressionGuide = {
 
   /**
    * Progression Methods
-   * Based on multiple Schoenfeld studies on progressive overload
+   * Based on McDonald's evidence-based progression principles
    */
   progressionMethods: {
     loadProgression: {

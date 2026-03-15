@@ -28,7 +28,7 @@ export const workouts = {
         reps: '6-8',
         rest: 150,
         group: 'A',
-        notes: 'Greater ROM than barbell, superior pec stretch. Control the descent.',
+        notes: 'Primary myofibrillar exercise. Use 6-8 reps for maximum contractile protein stimulation. Greater ROM than barbell, superior pec stretch. Control the descent.',
         equipment: 'Dumbbells + Bench'
       },
       {
