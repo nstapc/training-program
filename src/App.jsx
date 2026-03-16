@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, useParams } from 'react-router-dom';
+import { UserProvider } from './contexts/UserContext';
+import NavigationBar from './components/NavigationBar';
+import Breadcrumb from './components/Breadcrumb';
 import LandingPage from './components/LandingPage';
 import WorkoutsPage from './components/WorkoutsPage';
 import WorkoutsCategoryPage from './components/WorkoutsCategoryPage';
@@ -63,21 +66,35 @@ const NutritionGridWrapper = () => {
   return <NutritionGrid onBack={() => navigate('/')} />;
 };
 
+const AppContent = () => {
+  return (
+    <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat">
+      <NavigationBar />
+      <Breadcrumb />
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<LandingPageWrapper />} />
+          <Route path="/workouts" element={<WorkoutsCategoryPageWrapper />} />
+          <Route path="/workouts/push-pull-legs" element={<PushPullLegsPageWrapper />} />
+          <Route path="/workouts/full-body" element={<FullBodyPageWrapper />} />
+          <Route path="/workouts/upper-lower" element={<UpperLowerPageWrapper />} />
+          <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
+          <Route path="/tracking" element={<TrackingPageWrapper />} />
+          <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
+          <Route path="/nutrition" element={<NutritionGridWrapper />} />
+        </Routes>
+      </main>
+    </div>
+  );
+};
+
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPageWrapper />} />
-        <Route path="/workouts" element={<WorkoutsCategoryPageWrapper />} />
-        <Route path="/workouts/push-pull-legs" element={<PushPullLegsPageWrapper />} />
-        <Route path="/workouts/full-body" element={<FullBodyPageWrapper />} />
-        <Route path="/workouts/upper-lower" element={<UpperLowerPageWrapper />} />
-        <Route path="/workouts/:workoutKey" element={<WorkoutsPageWrapper />} />
-        <Route path="/tracking" element={<TrackingPageWrapper />} />
-        <Route path="/dashboard" element={<ProgressDashboardWrapper />} />
-        <Route path="/nutrition" element={<NutritionGridWrapper />} />
-      </Routes>
-    </Router>
+    <UserProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </UserProvider>
   );
 };
 

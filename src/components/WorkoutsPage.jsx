@@ -208,50 +208,35 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
   }
 
   return (
-    <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-2">
-          <button
-            onClick={backToMenu}
-            className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300"
-            aria-label="Back"
-          >
-            Back
-          </button>
-                              <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300">
-            {isSignedIn ? 'Profile' : 'Sign in'}
-          </button>
-        </div>
+    <div className="max-w-4xl mx-auto py-8">
+      <h1 className="text-3xl font-bold text-center mb-2 text-black">{currentWorkout.name}</h1>
+      <p className="text-center text-black mb-8">{currentWorkout.description}</p>
 
-        <h1 className="text-3xl font-bold text-center mb-2 text-black">{currentWorkout.name}</h1>
-        <p className="text-center text-black mb-8">{currentWorkout.description}</p>
-
-        <SmartWorkoutInterface
-          exercises={currentWorkout.exercises}
-          currentExerciseIndex={currentExerciseIndex}
-          currentSet={currentSet}
-          isResting={isResting}
-          timeLeft={timeLeft}
-          isTimerRunning={isTimerRunning}
-          onSkipToExercise={skipToExercise}
-          onSkipToSet={skipToSet}
-          onCompleteSet={completeSet}
-          onCompleteSetFromRest={completeSetFromRest}
-          onAutoAdvance={() => {
-            // Auto-advance logic using the existing progression system
-            const normalResult = handleNormalProgression({
-              currentExerciseIndex,
-              currentSet,
-              totalExercises: currentWorkout.exercises.length,
-              exerciseSets: currentExercise.sets,
-              restTime: currentExercise.rest,
-              fromRest: false
-            });
-            applyNavigationResult(normalResult);
-          }}
-          autoAdvanceEnabled={true}
-        />
-      </div>
+      <SmartWorkoutInterface
+        exercises={currentWorkout.exercises}
+        currentExerciseIndex={currentExerciseIndex}
+        currentSet={currentSet}
+        isResting={isResting}
+        timeLeft={timeLeft}
+        isTimerRunning={isTimerRunning}
+        onSkipToExercise={skipToExercise}
+        onSkipToSet={skipToSet}
+        onCompleteSet={completeSet}
+        onCompleteSetFromRest={completeSetFromRest}
+        onAutoAdvance={() => {
+          // Auto-advance logic using the existing progression system
+          const normalResult = handleNormalProgression({
+            currentExerciseIndex,
+            currentSet,
+            totalExercises: currentWorkout.exercises.length,
+            exerciseSets: currentExercise.sets,
+            restTime: currentExercise.rest,
+            fromRest: false
+          });
+          applyNavigationResult(normalResult);
+        }}
+        autoAdvanceEnabled={true}
+      />
     </div>
   );
 };

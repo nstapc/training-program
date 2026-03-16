@@ -1,16 +1,9 @@
 import React from 'react';
 
 const LandingPage = ({ onNavigate }) => {
-  const isSignedIn = false; // Profile functionality removed for now
-
   return (
     <div className="min-h-screen bg-[url('/background.png')] bg-cover bg-center bg-no-repeat text-black p-4 flex items-center justify-center">
       <div className="max-w-4xl w-full">
-        <div className="flex justify-end mb-6">
-          <button className="flex items-center gap-2 px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300">
-            {isSignedIn ? 'Profile' : 'Sign in'}
-          </button>
-        </div>
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-3 text-black">Training Program</h1>
           <p className="text-xl text-black">v 0.1.0</p>

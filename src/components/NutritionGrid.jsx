@@ -112,95 +112,93 @@ const NutritionGrid = ({ onBack }) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto py-8">
 
-        {/* Header */}
-        <div className="flex justify-between items-center mb-6">
-          <div className="flex items-center gap-4">
-            {onBack && (
-              <button onClick={onBack} className="text-gray-500 hover:text-gray-800 text-sm">
-                ← Back
-              </button>
-            )}
-            <h2 className="text-2xl font-bold">Nutrition Log</h2>
-          </div>
-          <div className="flex gap-2">
-            <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
-              + Add Row
+      {/* Header */}
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center gap-4">
+          {onBack && (
+            <button onClick={onBack} className="text-gray-500 hover:text-gray-800 text-sm">
+              ← Back
             </button>
-            <button onClick={() => setRows([makeRow()])} className="px-4 py-2 bg-gray-500 text-white text-sm rounded hover:bg-gray-600">
-              Reset
-            </button>
-          </div>
+          )}
+          <h2 className="text-2xl font-bold">Nutrition Log</h2>
         </div>
-
-        {error && (
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
-            {error}
-          </div>
-        )}
-        {loading && (
-          <div className="text-sm text-blue-500 mb-3 italic">Fetching nutrition data…</div>
-        )}
-
-        {/* Grid */}
-        <div className="bg-white rounded-lg shadow-lg mb-6 overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">
-                {['Date', 'Food', 'Qty', 'Unit', 'Calories', 'Protein (g)', 'Carbs (g)', 'Fat (g)', 'Fiber (g)', ''].map(h => (
-                  <th key={h} className="border border-gray-200 px-3 py-2">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map(row => (
-                <tr key={row.id} className="hover:bg-gray-50">
-                  <EditableCell rowId={row.id} field="date" value={row.date} type="date" />
-                  <EditableCell rowId={row.id} field="food" value={row.food} />
-                  <EditableCell rowId={row.id} field="qty"  value={row.qty}  type="number" />
-                  <EditableCell rowId={row.id} field="unit" value={row.unit} />
-                  <ReadonlyCell value={row.calories} />
-                  <ReadonlyCell value={row.protein} />
-                  <ReadonlyCell value={row.carbs} />
-                  <ReadonlyCell value={row.fat} />
-                  <ReadonlyCell value={row.fiber} />
-                  <td className={cellClass}>
-                    <button
-                      onClick={() => deleteRow(row.id)}
-                      className="text-red-400 hover:text-red-600 text-xs px-1"
-                      title="Delete row"
-                    >
-                      ✕
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="flex gap-2">
+          <button onClick={addRow} className="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">
+            + Add Row
+          </button>
+          <button onClick={() => setRows([makeRow()])} className="px-4 py-2 bg-gray-500 text-white text-sm rounded hover:bg-gray-600">
+            Reset
+          </button>
         </div>
-
-        {/* Totals */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold mb-4">Daily Totals</h3>
-          <div className="grid grid-cols-5 gap-4">
-            {[
-              { label: 'Calories',    value: Math.round(totals.calories), color: 'text-blue-600' },
-              { label: 'Protein (g)', value: totals.protein.toFixed(1),   color: 'text-green-600' },
-              { label: 'Carbs (g)',   value: totals.carbs.toFixed(1),     color: 'text-yellow-600' },
-              { label: 'Fat (g)',     value: totals.fat.toFixed(1),       color: 'text-red-600' },
-              { label: 'Fiber (g)',   value: totals.fiber.toFixed(1),     color: 'text-purple-600' },
-            ].map(({ label, value, color }) => (
-              <div key={label} className="text-center">
-                <div className={`text-2xl font-bold ${color}`}>{value}</div>
-                <div className="text-sm text-gray-600">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
       </div>
+
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 text-sm">
+          {error}
+        </div>
+      )}
+      {loading && (
+        <div className="text-sm text-blue-500 mb-3 italic">Fetching nutrition data…</div>
+      )}
+
+      {/* Grid */}
+      <div className="bg-white rounded-lg shadow-lg mb-6 overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wide">
+              {['Date', 'Food', 'Qty', 'Unit', 'Calories', 'Protein (g)', 'Carbs (g)', 'Fat (g)', 'Fiber (g)', ''].map(h => (
+                <th key={h} className="border border-gray-200 px-3 py-2">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(row => (
+              <tr key={row.id} className="hover:bg-gray-50">
+                <EditableCell rowId={row.id} field="date" value={row.date} type="date" />
+                <EditableCell rowId={row.id} field="food" value={row.food} />
+                <EditableCell rowId={row.id} field="qty"  value={row.qty}  type="number" />
+                <EditableCell rowId={row.id} field="unit" value={row.unit} />
+                <ReadonlyCell value={row.calories} />
+                <ReadonlyCell value={row.protein} />
+                <ReadonlyCell value={row.carbs} />
+                <ReadonlyCell value={row.fat} />
+                <ReadonlyCell value={row.fiber} />
+                <td className={cellClass}>
+                  <button
+                    onClick={() => deleteRow(row.id)}
+                    className="text-red-400 hover:text-red-600 text-xs px-1"
+                    title="Delete row"
+                  >
+                    ✕
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* Totals */}
+      <div className="bg-white rounded-lg shadow-lg p-6">
+        <h3 className="text-lg font-semibold mb-4">Daily Totals</h3>
+        <div className="grid grid-cols-5 gap-4">
+          {[
+            { label: 'Calories',    value: Math.round(totals.calories), color: 'text-blue-600' },
+            { label: 'Protein (g)', value: totals.protein.toFixed(1),   color: 'text-green-600' },
+            { label: 'Carbs (g)',   value: totals.carbs.toFixed(1),     color: 'text-yellow-600' },
+            { label: 'Fat (g)',     value: totals.fat.toFixed(1),       color: 'text-red-600' },
+            { label: 'Fiber (g)',   value: totals.fiber.toFixed(1),     color: 'text-purple-600' },
+          ].map(({ label, value, color }) => (
+            <div key={label} className="text-center">
+              <div className={`text-2xl font-bold ${color}`}>{value}</div>
+              <div className="text-sm text-gray-600">{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };
