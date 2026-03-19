@@ -238,7 +238,21 @@ const calculateProgressionSuggestion = (exerciseData) => {
   }
 
   // Check for weight progression
-  if (latestEntry.rpe <= 7 && latestEntry.reps >= parseInt(currentParams.reps.split('-')[1] || currentParams.reps)) {
+  const parseReps = (reps) => {
+    if (typeof reps === 'string') {
+      const repMatch = reps.match(/(\d+)-(\d+)/);
+      if (repMatch) {
+        return parseInt(repMatch[2]); // Use the higher end of the range
+      } else {
+        return parseInt(reps) || 0;
+      }
+    } else if (typeof reps === 'number') {
+      return reps;
+    }
+    return 0;
+  };
+
+  if (latestEntry.rpe <= 7 && latestEntry.reps >= parseReps(currentParams.reps)) {
     const weightIncrease = Math.max(
       PROGRESSION_RULES.MIN_WEIGHT_INCREMENT,
       Math.round(currentParams.weight * PROGRESSION_RULES.WEIGHT_INCREASE_PERCENT * 2) / 2
@@ -262,8 +276,7 @@ const calculateProgressionSuggestion = (exerciseData) => {
 
   // Check for rep progression (if weight progression stalled)
   if (latestEntry.rpe <= 6 && latestEntry.weight === currentParams.weight) {
-    const currentRepRange = currentParams.reps.split('-');
-    const maxReps = parseInt(currentRepRange[1] || currentRepRange[0]);
+    const maxReps = parseReps(currentParams.reps);
     
     if (latestEntry.reps >= maxReps) {
       return {

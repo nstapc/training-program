@@ -11,7 +11,22 @@ import {
   Pause, 
   SkipForward,
   Save,
-  RefreshCw
+  RefreshCw,
+  Smartphone,
+  Wifi,
+  WifiOff,
+  Trophy,
+  Star,
+  Zap,
+  Heart,
+  Shield,
+  Download,
+  Share2,
+  Volume2,
+  VolumeX,
+  Settings,
+  Moon,
+  Sun
 } from 'lucide-react';
 import { formatTime } from '../utils/workoutUtils';
 import { 
@@ -25,6 +40,10 @@ import {
 } from '../utils/workoutSessionManager';
 import { logEnhancedExerciseSet } from '../utils/enhancedProgressTracker';
 import { playLyreSound } from '../utils/audioUtils';
+import { autoSaveManager } from '../utils/offlineStorage';
+import { gamificationSystem } from '../utils/gamificationSystem';
+import { predictiveAnalytics } from '../utils/predictiveAnalytics';
+import { RESPONSIVE_CONFIG } from '../utils/responsiveUtils';
 
 const SmartWorkoutInterface = ({ 
   exercises, 

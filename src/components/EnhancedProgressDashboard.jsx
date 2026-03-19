@@ -29,11 +29,35 @@ import {
   Award,
   RefreshCw,
   Download,
-  Share2
+  Share2,
+  Smartphone,
+  Wifi,
+  WifiOff,
+  Trophy,
+  Star,
+  Shield,
+  Brain,
+  TrendingDown,
+  TrendingUp as TrendingUpIcon,
+  Volume2,
+  VolumeX,
+  Settings,
+  Moon,
+  Sun,
+  Eye,
+  EyeOff,
+  Plus,
+  Minus,
+  Filter,
+  Search
 } from 'lucide-react';
 import { getSessionHistory, getSessionStats, getExerciseCompletion } from '../utils/workoutSessionManager';
 import { getExerciseHistory, getExerciseTrends, getMuscleGroupVolumeSummary, getAllProgressionSuggestions } from '../utils/enhancedProgressTracker';
 import { getExerciseProgressionAnalysis, getWeeklyProgressionSummary } from '../utils/progressionEngine';
+import { autoSaveManager } from '../utils/offlineStorage';
+import { gamificationSystem } from '../utils/gamificationSystem';
+import { predictiveAnalytics } from '../utils/predictiveAnalytics';
+import { RESPONSIVE_CONFIG } from '../utils/responsiveUtils';
 
 const EnhancedProgressDashboard = ({ onBackToWorkout }) => {
   const [selectedExercise, setSelectedExercise] = useState('');

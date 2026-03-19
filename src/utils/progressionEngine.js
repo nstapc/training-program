@@ -169,8 +169,12 @@ const analyzeProgressionPatterns = (history, exerciseData) => {
   let pattern = 'progressing';
   if (weeksStalled >= PROGRESSION_CONFIG.PROGRESSION_STALL_WEEKS) {
     pattern = 'stalled';
-  } else if (weightTrend === 'down' && volumeTrend === 'down') {
+  } else if (weightTrend === 'down' && volumeTrend === 'down' && rpeTrend === 'up') {
     pattern = 'regressing';
+  } else if (weightTrend === 'up' && volumeTrend === 'up') {
+    pattern = 'progressing';
+  } else if (weightTrend === 'stable' && volumeTrend === 'up') {
+    pattern = 'progressing';
   }
 
   return {
@@ -222,12 +226,12 @@ const analyzeVolumeTargets = (history, muscleGroup) => {
   const avgVolume = recentHistory.reduce((sum, entry) => sum + entry.volume, 0) / recentHistory.length;
   
   let status = 'optimal';
-  if (avgVolume < targets.min) status = 'below_target';
-  else if (avgVolume > targets.max) status = 'above_target';
+  if (targets && avgVolume < targets.min) status = 'below_target';
+  else if (targets && avgVolume > targets.max) status = 'above_target';
 
   return {
     currentVolume: Math.round(avgVolume),
-    targetRange: `${targets.min}-${targets.max}`,
+    targetRange: targets ? `${targets.min}-${targets.max}` : 'N/A',
     status,
     recommendation: getVolumeRecommendation(status, avgVolume, targets)
   };
