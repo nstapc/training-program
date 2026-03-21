@@ -3,7 +3,7 @@
  * Provides achievements, streaks, and motivation features
  */
 
-import { getWorkoutHistory, getSessionHistory } from './workoutSessionManager';
+import { getSessionHistory } from './workoutSessionManager';
 import { getExerciseHistory } from './enhancedProgressTracker';
 
 // Achievement definitions

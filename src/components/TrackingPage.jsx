@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FoodSearch } from './FoodSearch';
+import FoodSearch from './FoodSearch';
 
 const TrackingPage = ({ onBack }) => {
   const [trackingData, setTrackingData] = useState([]);
