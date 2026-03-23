@@ -65,6 +65,9 @@ const SmartWorkoutInterface = ({
   const [notes, setNotes] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [showProgression, setShowProgression] = useState(false);
+  
+  // Achievement notifications
+  const { showAchievement, NotificationComponent } = useAchievementNotifications();
 
   const session = getActiveSession();
   const currentSetData = getCurrentSetData();
@@ -459,6 +462,9 @@ const SmartWorkoutInterface = ({
           })}
         </div>
       </div>
+      
+      {/* Achievement Notification */}
+      <NotificationComponent />
     </div>
   );
 };

@@ -11,15 +11,28 @@ import {
   LogOut,
   Menu,
   X,
-  ChevronDown
+  ChevronDown,
+  Trophy,
+  Star,
+  Zap
 } from 'lucide-react';
 import { useUser } from '../contexts/UserContext';
+import AchievementDashboard from './AchievementDashboard';
 
 const NavigationBar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [showAchievements, setShowAchievements] = useState(false);
   const location = useLocation();
   const { user, isAuthenticated, logout } = useUser();
+
+  // Mock gamification stats for now
+  const gamificationStats = {
+    level: 3,
+    points: 1250,
+    streak: 7,
+    achievements: 5
+  };
 
   const navigationItems = [
     { path: '/', icon: Home, label: 'Home', exact: true },
@@ -85,6 +98,35 @@ const NavigationBar = () => {
 
           {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
+            {/* Gamification Stats (Desktop) */}
+            <div className="hidden lg:flex items-center space-x-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white p-3 rounded-xl shadow-lg">
+              <div className="flex items-center gap-2">
+                <Trophy size={16} />
+                <span className="text-sm font-semibold">Level {gamificationStats.level}</span>
+              </div>
+              <div className="w-px h-8 bg-white/30" />
+              <div className="grid grid-cols-3 gap-3 text-xs">
+                <div className="text-center">
+                  <div className="font-bold">{gamificationStats.points}</div>
+                  <div className="text-purple-200">Points</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-bold">{gamificationStats.streak}</div>
+                  <div className="text-purple-200">Streak</div>
+                </div>
+                <div className="text-center">
+                  <div className="font-bold">{gamificationStats.achievements}</div>
+                  <div className="text-purple-200">Achievements</div>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowAchievements(true)}
+                className="ml-2 p-2 bg-white/20 rounded-full hover:bg-white/30 transition-colors"
+              >
+                <Star size={16} />
+              </button>
+            </div>
+
             {/* Profile Section */}
             <div className="relative">
               {isAuthenticated ? (
@@ -206,6 +248,12 @@ const NavigationBar = () => {
         )}
       </div>
     </nav>
+
+    {/* Achievement Dashboard Modal */}
+    <AchievementDashboard 
+      isOpen={showAchievements}
+      onClose={() => setShowAchievements(false)}
+    />
   );
 };
 
