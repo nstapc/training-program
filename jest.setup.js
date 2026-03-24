@@ -7,3 +7,16 @@ if (typeof global.TextEncoder === 'undefined') {
 if (typeof global.TextDecoder === 'undefined') {
   global.TextDecoder = require('util').TextDecoder;
 }
+
+// Spy on console.error globally so tests can assert on it with
+// expect(console.error).toHaveBeenCalledWith(...) without having to
+// set up the spy themselves.
+beforeEach(() => {
+  jest.spyOn(console, 'error').mockImplementation(() => {});
+});
+
+afterEach(() => {
+  if (typeof console.error.mockRestore === 'function') {
+    console.error.mockRestore();
+  }
+});

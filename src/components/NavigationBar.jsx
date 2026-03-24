@@ -38,7 +38,7 @@ const NavigationBar = () => {
     { path: '/', icon: Home, label: 'Home', exact: true },
     { path: '/workouts', icon: Dumbbell, label: 'Workouts' },
     { path: '/tracking', icon: Activity, label: 'Tracking' },
-    { path: '/dashboard', icon: BarChart3, label: 'Progress' },
+    { path: '/dashboard', icon: BarChart3, label: 'Dashboard' },
     { path: '/nutrition', icon: Apple, label: 'Nutrition' }
   ];
 

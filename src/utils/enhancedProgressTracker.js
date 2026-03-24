@@ -3,8 +3,6 @@
  * Extended version of progressTracker with weight/reps tracking and progression logic
  */
 
-import { getSessionHistory, getActiveSession } from './workoutSessionManager';
-
 // Constants for progression logic
 const PROGRESSION_RULES = {
   WEIGHT_INCREASE_PERCENT: 0.05, // 5% increase
@@ -16,7 +14,23 @@ const PROGRESSION_RULES = {
 
 const STORAGE_KEYS = {
   PROGRESSION_DATA: 'progression_data',
-  EXERCISE_HISTORY: 'exercise_history'
+  EXERCISE_HISTORY: 'exercise_history',
+  SEQUENCE: 'exercise_history_sequence'
+};
+
+/**
+ * Get a monotonically increasing sequence number to preserve insertion order
+ * even when multiple entries share the same millisecond timestamp.
+ */
+const _getNextSequence = () => {
+  try {
+    const current = parseInt(localStorage.getItem(STORAGE_KEYS.SEQUENCE) || '0', 10);
+    const next = current + 1;
+    localStorage.setItem(STORAGE_KEYS.SEQUENCE, String(next));
+    return next;
+  } catch {
+    return Date.now();
+  }
 };
 
 /**
@@ -76,7 +90,8 @@ export const logEnhancedExerciseSet = (workoutKey, exerciseName, setNumber, weig
     // Get current history
     const history = getExerciseHistory(exerciseKey);
     
-    // Create new entry
+    // Create new entry (add sequence to guarantee unique ordering even within same millisecond)
+    const sequence = _getNextSequence();
     const newEntry = {
       workoutKey,
       exerciseName,
@@ -88,6 +103,7 @@ export const logEnhancedExerciseSet = (workoutKey, exerciseName, setNumber, weig
       notes,
       volume: weight * reps,
       timestamp: new Date().toISOString(),
+      sequence,
       date: new Date().toLocaleDateString()
     };
 
@@ -333,7 +349,12 @@ export const getExerciseTrends = (exerciseKey, daysBack = 30) => {
 
   const relevantHistory = history.filter(entry => 
     new Date(entry.timestamp) >= cutoffDate
-  ).sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+  ).sort((a, b) => {
+    const timeDiff = new Date(a.timestamp) - new Date(b.timestamp);
+    if (timeDiff !== 0) return timeDiff;
+    // Use sequence as tiebreaker for entries with the same timestamp
+    return (a.sequence || 0) - (b.sequence || 0);
+  });
 
   if (relevantHistory.length === 0) {
     return {
@@ -410,8 +431,21 @@ const calculateTrend = (values) => {
  * @param {number} weeksBack - Number of weeks to look back
  * @returns {Object} Volume summary data
  */
+/**
+ * Read session history directly from localStorage (avoids circular import with workoutSessionManager)
+ */
+const getSessionHistoryDirect = () => {
+  try {
+    const historyData = localStorage.getItem('workout_session_history');
+    const history = historyData ? JSON.parse(historyData) : [];
+    return history.sort((a, b) => new Date(b.startTime) - new Date(a.startTime)).slice(0, 50);
+  } catch {
+    return [];
+  }
+};
+
 export const getMuscleGroupVolumeSummary = (muscleGroup, weeksBack = 4) => {
-  const history = getSessionHistory();
+  const history = getSessionHistoryDirect();
   const now = new Date();
   const weeksAgo = new Date(now.getTime() - (weeksBack * 7 * 24 * 60 * 60 * 1000));
 

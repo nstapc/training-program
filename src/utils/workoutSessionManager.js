@@ -3,6 +3,8 @@
  * Manages active workout sessions with real-time tracking and auto-save functionality
  */
 
+import { logEnhancedExerciseSet } from './enhancedProgressTracker';
+
 // Constants for session management
 const STORAGE_KEYS = {
   ACTIVE_SESSION: 'active_workout_session',
@@ -195,6 +197,7 @@ export const updateRestTimer = (isResting, timeLeft, isTimerRunning) => {
 
 /**
  * Complete the current workout session
+ * Logs all completed sets to the enhanced progress tracker before saving.
  * @returns {Object} Completed session data
  */
 export const completeSession = () => {
@@ -202,7 +205,33 @@ export const completeSession = () => {
   if (!session) return null;
 
   session.endTime = new Date().toISOString();
-  
+
+  // Log all completed sets with full data to the enhanced progress tracker
+  session.exercises.forEach(exercise => {
+    exercise.setsData.forEach(setData => {
+      if (
+        setData.completed &&
+        setData.weight !== null &&
+        setData.reps !== null &&
+        setData.rpe !== null
+      ) {
+        try {
+          logEnhancedExerciseSet(
+            session.workoutKey,
+            exercise.name,
+            setData.setNumber,
+            setData.weight,
+            setData.reps,
+            setData.rpe,
+            ''
+          );
+        } catch {
+          // Silently ignore individual set logging errors so the session still completes
+        }
+      }
+    });
+  });
+
   // Save to history
   saveSessionToHistory(session);
   

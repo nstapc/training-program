@@ -167,23 +167,23 @@ const EnhancedProgressDashboard = ({ onBackToWorkout }) => {
       {/* Overview View */}
       {viewMode === 'overview' && (
         <>
-          {/* Key Metrics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white/90 transition-all shadow-2xl p-6 border border-gray-300">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-black">Total Volume</p>
-                  <p className="text-2xl font-bold text-black">{formatVolume(advancedStats.totalVolume)}</p>
-                  <div className="flex items-center gap-2 mt-2">
-                    {getTrendIcon(advancedStats.volumeTrend)}
-                    <span className={`text-sm ${getTrendColor(advancedStats.volumeTrend)}`}>
-                      Volume trend: {advancedStats.volumeTrend}
-                    </span>
-                  </div>
-                </div>
-                <BarChart3 size={32} className="text-black" />
+      {/* Key Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="bg-white/90 transition-all shadow-2xl p-6 border border-gray-300">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-black">Total Workouts</p>
+              <p className="text-2xl font-bold text-black">{history.length}</p>
+              <div className="flex items-center gap-2 mt-2">
+                {getTrendIcon(advancedStats.volumeTrend)}
+                <span className={`text-sm ${getTrendColor(advancedStats.volumeTrend)}`}>
+                  Volume trend: {advancedStats.volumeTrend}
+                </span>
               </div>
             </div>
+            <BarChart3 size={32} className="text-black" />
+          </div>
+        </div>
 
             <div className="bg-white/90 transition-all shadow-2xl p-6 border border-gray-300">
               <div className="flex items-center justify-between">

@@ -73,7 +73,7 @@ const AppContent = () => {
       <Breadcrumb />
       <main className="flex-grow">
         <Routes>
-          <Route path="/" element={<LandingPageWrapper />} />
+          <Route path="/" element={<WorkoutsPageWrapper />} />
           <Route path="/workouts" element={<WorkoutsCategoryPageWrapper />} />
           <Route path="/workouts/push-pull-legs" element={<PushPullLegsPageWrapper />} />
           <Route path="/workouts/full-body" element={<FullBodyPageWrapper />} />

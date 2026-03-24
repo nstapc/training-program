@@ -35,7 +35,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
   }, [initialWorkout, selectedWorkout]);
 
   const currentWorkout = selectedWorkout ? workouts[selectedWorkout] : null;
-  const currentExercise = currentWorkout?.exercises[currentExerciseIndex];
+  const currentExercise = currentWorkout?.exercises?.[currentExerciseIndex];
 
 
   useEffect(() => {
@@ -194,7 +194,7 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
                   <h2 className="text-3xl font-bold mb-2 text-black">{workout.name}</h2>
                   <p className="text-sm mb-4 text-black">{workout.description}</p>
                   <div className="space-y-1 text-sm text-black">
-                    {workout.exercises.map((exercise, index) => (
+                    {workout.exercises?.map((exercise, index) => (
                       <p key={index}>- {exercise.name}</p>
                     ))}
                   </div>
@@ -207,36 +207,56 @@ const WorkoutsPage = ({ onBack, initialWorkout }) => {
     );
   }
 
+  if (!currentWorkout) {
+    return (
+      <div className="max-w-4xl mx-auto py-8">
+        <p className="text-center text-black">Workout not found.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-4xl mx-auto py-8">
+      <div className="flex items-center mb-4">
+        <button
+          onClick={backToMenu}
+          className="text-sm px-4 py-2 bg-white/90 hover:bg-white/100 transition-all transform shadow-2xl text-black border border-gray-300"
+        >
+          Back
+        </button>
+      </div>
       <h1 className="text-3xl font-bold text-center mb-2 text-black">{currentWorkout.name}</h1>
       <p className="text-center text-black mb-8">{currentWorkout.description}</p>
 
-      <SmartWorkoutInterface
-        exercises={currentWorkout.exercises}
-        currentExerciseIndex={currentExerciseIndex}
-        currentSet={currentSet}
-        isResting={isResting}
-        timeLeft={timeLeft}
-        isTimerRunning={isTimerRunning}
-        onSkipToExercise={skipToExercise}
-        onSkipToSet={skipToSet}
-        onCompleteSet={completeSet}
-        onCompleteSetFromRest={completeSetFromRest}
-        onAutoAdvance={() => {
-          // Auto-advance logic using the existing progression system
-          const normalResult = handleNormalProgression({
-            currentExerciseIndex,
-            currentSet,
-            totalExercises: currentWorkout.exercises.length,
-            exerciseSets: currentExercise.sets,
-            restTime: currentExercise.rest,
-            fromRest: false
-          });
-          applyNavigationResult(normalResult);
-        }}
-        autoAdvanceEnabled={true}
-      />
+      {currentWorkout.exercises ? (
+        <SmartWorkoutInterface
+          exercises={currentWorkout.exercises}
+          currentExerciseIndex={currentExerciseIndex}
+          currentSet={currentSet}
+          isResting={isResting}
+          timeLeft={timeLeft}
+          isTimerRunning={isTimerRunning}
+          onSkipToExercise={skipToExercise}
+          onSkipToSet={skipToSet}
+          onCompleteSet={completeSet}
+          onCompleteSetFromRest={completeSetFromRest}
+          onAutoAdvance={() => {
+            // Auto-advance logic using the existing progression system
+            const normalResult = handleNormalProgression({
+              currentExerciseIndex,
+              currentSet,
+              totalExercises: currentWorkout.exercises.length,
+              exerciseSets: currentExercise?.sets,
+              restTime: currentExercise?.rest,
+              fromRest: false
+            });
+            applyNavigationResult(normalResult);
+          }}
+          autoAdvanceEnabled={true}
+        />
+      ) : (
+        <div className="text-center text-black py-8">No exercises available for this workout.</div>
+      )}
     </div>
   );
 };

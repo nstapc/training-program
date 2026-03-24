@@ -44,6 +44,7 @@ import { autoSaveManager } from '../utils/offlineStorage';
 import { gamificationSystem } from '../utils/gamificationSystem';
 import { predictiveAnalytics } from '../utils/predictiveAnalytics';
 import { RESPONSIVE_CONFIG } from '../utils/responsiveUtils';
+import { useAchievementNotifications } from './AchievementNotification';
 
 const SmartWorkoutInterface = ({ 
   exercises, 
@@ -100,7 +101,7 @@ const SmartWorkoutInterface = ({
     };
   }, [isTimerRunning, isResting, timeLeft]);
 
-  const currentExercise = exercises[currentExerciseIndex];
+  const currentExercise = exercises?.[currentExerciseIndex];
   const isCurrentSetCompleted = isSetCompleted(currentExerciseIndex, currentSet);
 
   const handleWeightChange = (value) => {
@@ -130,7 +131,7 @@ const SmartWorkoutInterface = ({
 
     // Log to enhanced tracker
     logEnhancedExerciseSet(
-      session.workoutKey,
+      session?.workoutKey || '',
       currentExercise.name,
       currentSet,
       weightNum,
@@ -142,17 +143,17 @@ const SmartWorkoutInterface = ({
     // Update session manager
     updateCurrentSet(weightNum, repsNum, rpe);
 
+    // Notify parent of set completion for progress tracking (handles logging + progression)
+    if (onCompleteSet) {
+      onCompleteSet();
+    }
+
     // Clear input fields for next set
     setWeight('');
     setReps('');
     setRpe(7);
     setNotes('');
     setIsEditing(false);
-
-    // Auto-advance if enabled
-    if (autoAdvanceEnabled) {
-      onAutoAdvance();
-    }
   };
 
   const handleQuickComplete = () => {
@@ -357,7 +358,7 @@ const SmartWorkoutInterface = ({
             className="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-md transition-all transform shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Check size={20} />
-            Complete Set {currentSet}
+            Completed Set {currentSet}
           </button>
 
           <button
@@ -395,7 +396,7 @@ const SmartWorkoutInterface = ({
             <div className="text-3xl font-bold text-black mb-2">
               {formatTime(timeLeft)}
             </div>
-            <div className="text-black">Rest Time Remaining</div>
+            <div className="text-black">Rest Time</div>
             {timeLeft <= 0 && (
               <div className="mt-2 text-red-600 font-semibold">
                 Rest Complete! Ready for next set.
@@ -418,7 +419,7 @@ const SmartWorkoutInterface = ({
               <div
                 key={idx}
                 onClick={() => onSkipToExercise(idx)}
-                className={`p-3 cursor-pointer transition-all border rounded-md ${
+                className={`p-4 cursor-pointer transition-all border rounded-md ${
                   isCurrent
                     ? 'bg-blue-50 border-blue-300'
                     : 'bg-white/90 hover:bg-white/100 border-gray-300'
@@ -429,9 +430,14 @@ const SmartWorkoutInterface = ({
                     <span className="text-sm font-semibold text-black bg-gray-200 px-2 py-1 rounded">
                       {exercise.group}
                     </span>
-                    <span className={`font-medium ${isCurrent ? 'text-blue-700' : 'text-black'}`}>
-                      {exercise.name}
-                    </span>
+                    <div>
+                      <span className={`font-medium ${isCurrent ? 'text-blue-700' : 'text-black'}`}>
+                        {exercise.name}
+                      </span>
+                      <div className="text-xs text-gray-600 mt-0.5">
+                        {exercise.sets} x {exercise.reps} &bull; {exercise.rest}s rest
+                      </div>
+                    </div>
                   </div>
                   <div className="flex items-center gap-4 text-sm text-black">
                     <span>{completedSets}/{exercise.sets} sets</span>

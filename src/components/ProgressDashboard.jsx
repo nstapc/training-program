@@ -28,9 +28,18 @@ const ProgressDashboard = ({ onBackToWorkout }) => {
   const [selectedExercise, setSelectedExercise] = useState('');
   const [timeRange, setTimeRange] = useState('30'); // days
 
-  const history = getWorkoutHistory();
-  const frequency = getTrainingFrequency();
-  const volumeData = getWeeklyVolumeSummary('chest', 4);
+  let history;
+  try { history = getWorkoutHistory(); } catch (e) { history = []; }
+
+  let frequency;
+  try {
+    frequency = getTrainingFrequency();
+  } catch (e) {
+    frequency = { totalWorkouts: 0, averagePerWeek: 0, workoutsByType: {}, consistency: 0 };
+  }
+
+  let volumeData;
+  try { volumeData = getWeeklyVolumeSummary('chest', 4); } catch (e) { volumeData = []; }
 
   // Get unique exercises from history
   const allExercises = Array.from(new Set(
